@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XGRAPHiiiCS — Fine Art &amp; Large Format Print Studio</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%230698D7'/%3E%3Cstop offset='.52' stop-color='%23C10078'/%3E%3Cstop offset='1' stop-color='%23FCE902'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg stroke='url(%23g)' stroke-width='7' stroke-linecap='round'%3E%3Cline x1='24' y1='24' x2='76' y2='76'/%3E%3Cline x1='76' y1='24' x2='24' y2='76'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Montserrat:wght@200;300;400;500;600&family=Sora:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===== BRAND DISPLAY FONT: SANTRAL LIGHT (Taner Ardali) =====
+   Drop your licensed Santral Light file into a "fonts/" folder next to this HTML.
+   Any one of these formats works (woff2 is best for web).
+   Until present, the site falls back to Jost (geometric) then Montserrat. */
+@font-face{
+  font-family:'Santral';
+  src:url('fonts/santral-light.woff2') format('woff2'),
+      url('fonts/santral-light.woff')  format('woff'),
+      url('fonts/Santral-Light.otf')   format('opentype'),
+      url('fonts/santral-light.ttf')   format('truetype');
+  font-weight:100 700;
+  font-style:normal;
+  font-display:swap;
+}
+:root{
+  --ink:#0c0c0e;
+  --paper:#ffffff;
+  --paper-2:#f5f5f7;
+  --paper-3:#ececef;
+  --cyan:#0698D7;
+  --magenta:#C10078;
+  --yellow:#FCE902;
+  --muted:#6c6c74;
+  --line:rgba(12,12,14,.12);
+  --cmy:linear-gradient(90deg,#0698D7 0%,#C10078 52%,#FCE902 100%);
+  --cmy-soft:linear-gradient(120deg,#0698D7,#C10078 55%,#FCE902);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Sora',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.mono{font-family:'Space Mono',monospace}
+.display{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:300;letter-spacing:.01em;line-height:1.04;text-transform:uppercase}
+.cmy-text{background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* top accent line */
+.topbar{height:4px;background:var(--cmy)}
+
+/* ===== NAV ===== */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;backdrop-filter:blur(12px);background:rgba(255,255,255,.85);border-bottom:1px solid var(--line);transition:transform .4s ease}
+.nav{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:baseline;font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:300;font-size:1.4rem;letter-spacing:.2em}
+.logo .blk{color:var(--ink)}
+.logo .iii,.foot-logo .iii{background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo .x{background:linear-gradient(135deg,#0698D7,#C10078 55%,#FCE902);-webkit-background-clip:text;background-clip:text;color:transparent}
+nav ul{display:flex;gap:30px;list-style:none}
+nav a.navlink{font-size:.82rem;font-weight:500;letter-spacing:.02em;position:relative;padding:4px 0;text-transform:uppercase}
+nav a.navlink::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--cmy);transition:width .3s}
+nav a.navlink:hover::after{width:100%}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none}
+.burger span{width:26px;height:2px;background:var(--ink);transition:.3s}
+
+/* ===== HERO ===== */
+.hero{padding:170px 0 90px;position:relative}
+.hero::before{content:"";position:absolute;top:90px;right:-180px;width:560px;height:560px;border-radius:50%;background:var(--cmy-soft);filter:blur(120px);opacity:.22;z-index:-1}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:end}
+.tag{font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--magenta);margin-bottom:22px;display:flex;align-items:center;gap:10px}
+.tag::before{content:"";width:40px;height:3px;background:var(--cmy);border-radius:2px}
+.hero h1{font-size:clamp(3rem,8vw,6.6rem);font-family:'Santral','Jost','Montserrat',sans-serif;line-height:.92;letter-spacing:-.03em}
+.hero h1 .out{color:transparent;-webkit-text-stroke:1.4px var(--ink)}
+.hero p.lead{margin-top:28px;font-size:1.08rem;max-width:520px;color:var(--muted);font-weight:300;line-height:1.6}
+.hero-cta{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;font-weight:600;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;border-radius:3px;transition:.3s;border:1.5px solid var(--ink);cursor:pointer}
+.btn-fill{background:var(--ink);color:#fff;border-color:var(--ink);position:relative;overflow:hidden;z-index:1}
+.btn-fill::before{content:"";position:absolute;inset:0;background:var(--cmy);opacity:0;transition:.3s;z-index:-1}
+.btn-fill:hover{border-color:transparent}
+.btn-fill:hover::before{opacity:1}
+.btn-ghost:hover{background:var(--ink);color:#fff}
+.hero-art{aspect-ratio:3/4;border:1px solid var(--line);position:relative;overflow:hidden;border-radius:6px}
+.stat-row{display:flex;gap:46px;margin-top:60px;flex-wrap:wrap}
+.stat .n{font-family:'Santral','Jost','Montserrat',sans-serif;font-size:2.4rem;line-height:1}
+.stat .l{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* marquee */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--ink);color:#fff}
+.marquee-track{display:flex;gap:0;white-space:nowrap;animation:scroll 28s linear infinite;padding:16px 0}
+.marquee-track span{font-family:'Santral','Jost','Montserrat',sans-serif;font-size:1.1rem;letter-spacing:.02em;display:flex;align-items:center;gap:40px;padding-right:40px}
+.marquee-track span::after{content:"✕";font-size:.85rem;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* ===== SECTION HEAD ===== */
+section{padding:110px 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:60px;flex-wrap:wrap}
+.sec-head .idx{font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.1em;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+.sec-head h2{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.02;letter-spacing:.01em;margin-top:12px}
+.sec-head p{max-width:420px;color:var(--muted);font-weight:300;font-size:.98rem;line-height:1.6}
+
+/* ===== PRODUCTS ===== */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.prod{background:var(--paper);transition:.35s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.prod::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--cmy);transition:width .4s;z-index:2}
+.prod:hover::before{width:100%}
+.prod:hover{background:var(--paper-2)}
+.prod-img{height:172px;overflow:hidden;border-bottom:1px solid var(--line)}
+.prod-img svg{width:100%;height:100%;display:block;transition:transform .55s ease}
+.prod:hover .prod-img svg{transform:scale(1.06)}
+.prod-body{padding:26px 30px 32px;display:flex;flex-direction:column;flex:1}
+.prod .pn{font-family:'Space Mono',monospace;font-size:.75rem;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+.prod h3{font-size:1.32rem;margin-top:14px;font-weight:600;line-height:1.1}
+.prod p{margin-top:12px;font-size:.9rem;color:var(--muted);font-weight:300;line-height:1.55}
+.prod .arrow{margin-top:auto;padding-top:20px;font-size:1.3rem;transition:.3s;color:var(--magenta)}
+.prod:hover .arrow{transform:translateX(6px)}
+
+/* ===== SERVICES ===== */
+#services{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+#services::before{content:"";position:absolute;bottom:-200px;left:-150px;width:520px;height:520px;border-radius:50%;background:var(--cmy-soft);filter:blur(140px);opacity:.25}
+#services .sec-head h2{color:#fff}
+#services .sec-head p{color:rgba(255,255,255,.6)}
+.serv-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:6px;overflow:hidden;position:relative}
+.serv{background:var(--ink);padding:38px 32px;display:flex;gap:24px;align-items:flex-start;transition:.3s}
+.serv:hover{background:#17171a}
+.serv .num{font-family:'Santral','Jost','Montserrat',sans-serif;font-size:1.6rem;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent;min-width:54px}
+.serv h3{font-size:1.18rem;font-weight:600}
+.serv p{margin-top:8px;font-size:.9rem;color:rgba(255,255,255,.6);font-weight:300;line-height:1.55}
+
+/* ===== GALLERY ===== */
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:14px}
+.gal-item{overflow:hidden;border-radius:6px;position:relative;cursor:pointer;border:1px solid var(--line)}
+.gal-item .cap{position:absolute;inset:0;display:flex;align-items:flex-end;padding:18px;background:linear-gradient(transparent 45%,rgba(12,12,14,.82));opacity:0;transition:.35s}
+.gal-item:hover .cap{opacity:1}
+.gal-item .cap span{color:#fff;font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase}
+.gal-item svg{width:100%;height:100%;display:block;transition:.5s}
+.gal-item:hover svg{transform:scale(1.06)}
+.g-tall{grid-row:span 2}
+.g-wide{grid-column:span 2}
+/* real-photo overlay: drop a file into images/ and it covers the SVG illustration; if missing, it's removed and the SVG shows */
+.prod-img,.about-art{position:relative}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:var(--ink);transition:transform .55s ease}
+.prod:hover .photo,.gal-item:hover .photo{transform:scale(1.06)}
+
+/* ===== PROJECTS ===== */
+.proj{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;border:1px solid var(--line);background:var(--paper)}
+.proj:first-of-type{border-radius:6px 6px 0 0}
+.proj:last-of-type{border-radius:0 0 6px 6px}
+.proj:nth-child(even){grid-template-columns:1.1fr .9fr}
+.proj:nth-child(even) .proj-art{order:2}
+.proj+.proj{border-top:none}
+.proj-art{min-height:380px;position:relative;overflow:hidden}
+.proj-art svg{position:absolute;inset:0;width:100%;height:100%}
+.proj-info{padding:48px;display:flex;flex-direction:column;justify-content:center}
+.proj-info .loc{font-family:'Space Mono',monospace;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+.proj-info h3{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.05;margin:16px 0 14px}
+.proj-info p{color:var(--muted);font-weight:300;line-height:1.65;max-width:440px}
+.proj-info .meta{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap}
+.proj-info .meta .k{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block}
+.proj-info .meta .v{font-weight:600;font-size:.92rem;margin-top:3px;display:block}
+
+/* ===== CLIENTS ===== */
+.clients{text-align:center}
+.client-row{display:flex;justify-content:center;align-items:center;gap:60px;flex-wrap:wrap;margin-top:50px}
+.client-row .c{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:1.5rem;color:var(--ink);opacity:.5;transition:.3s;letter-spacing:.04em;text-transform:uppercase}
+.client-row a.c{cursor:pointer}
+.client-row .c:hover{opacity:1;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ===== ABOUT ===== */
+#about{background:var(--paper-2)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-grid .big{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2;letter-spacing:.01em}
+.about-text p{color:var(--muted);font-weight:300;line-height:1.75;margin-top:18px;font-size:1rem}
+.tech-strip{margin-top:38px;display:flex;flex-wrap:wrap;gap:10px}
+.tech-strip span{font-family:'Space Mono',monospace;font-size:.72rem;border:1px solid var(--line);padding:8px 14px;border-radius:40px;color:var(--muted);background:var(--paper)}
+.about-art{aspect-ratio:4/5;border:1px solid var(--line);overflow:hidden;border-radius:6px}
+
+/* ===== CONTACT ===== */
+#contact{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+#contact::before{content:"";position:absolute;top:-150px;right:-120px;width:480px;height:480px;border-radius:50%;background:var(--cmy-soft);filter:blur(130px);opacity:.22}
+#contact .sec-head h2{color:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.contact-info h3{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(2rem,4vw,3rem);line-height:1.1}
+.contact-info .row{margin-top:32px}
+.contact-info .row .k{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+.contact-info .row .v{font-size:1.15rem;margin-top:6px;font-weight:500}
+form{display:flex;flex-direction:column;gap:18px}
+form input,form textarea{background:transparent;border:none;border-bottom:1px solid rgba(255,255,255,.25);color:#fff;padding:14px 2px;font-family:'Sora',sans-serif;font-size:.95rem;transition:.3s}
+form input::placeholder,form textarea::placeholder{color:rgba(255,255,255,.4)}
+form input:focus,form textarea:focus{outline:none;border-image:var(--cmy) 1}
+form button{align-self:flex-start;margin-top:10px;background:var(--cmy);color:#fff;border:none;padding:16px 36px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;font-size:.85rem;cursor:pointer;border-radius:3px;transition:.3s;background-size:160% auto}
+form button:hover{background-position:right center;transform:translateY(-2px)}
+
+/* ===== SOCIAL / FOOTER ===== */
+footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.12);padding:70px 0 40px}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
+.foot-logo{display:flex;align-items:baseline;font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:300;font-size:2.6rem;letter-spacing:.26em}
+.foot-logo .blk{color:#fff}
+.foot-logo .x{background:linear-gradient(135deg,#0698D7,#C10078 55%,#FCE902);-webkit-background-clip:text;background-clip:text;color:transparent}
+.socials{display:flex;gap:14px;flex-wrap:wrap}
+.soc{display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);padding:12px 20px;border-radius:40px;transition:.3s;font-size:.82rem;font-weight:500;position:relative;overflow:hidden;z-index:1}
+.soc::before{content:"";position:absolute;inset:0;background:var(--cmy);opacity:0;transition:.3s;z-index:-1}
+.soc:hover{border-color:transparent}
+.soc:hover::before{opacity:1}
+.soc svg{width:18px;height:18px;fill:currentColor}
+.foot-bottom{display:flex;justify-content:space-between;margin-top:50px;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);font-family:'Space Mono',monospace;font-size:.74rem;color:rgba(255,255,255,.5);flex-wrap:wrap;gap:12px}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr}.hero-art{display:none}
+  .prod-grid{grid-template-columns:1fr 1fr}.serv-list{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+  .proj,.proj:nth-child(even){grid-template-columns:1fr}.proj:nth-child(even) .proj-art{order:0}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:620px){
+  .wrap{padding:0 20px}
+  nav ul{display:none}.burger{display:flex}
+  nav.open ul{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;background:var(--paper);padding:24px 32px;gap:18px;border-bottom:1px solid var(--line)}
+  .prod-grid{grid-template-columns:1fr}
+  .gal-grid{grid-template-columns:1fr;grid-auto-rows:200px}
+  .g-wide,.g-tall{grid-column:auto;grid-row:auto}
+  .stat-row{gap:28px}
+}
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+
+<header id="top">
+  <div class="wrap">
+    <nav id="nav">
+      <a href="#top" class="logo"><span class="x">X</span><span class="blk">GRAPH</span><span class="iii">iii</span><span class="blk">CS</span></a>
+      <ul>
+        <li><a class="navlink" href="#top">Home</a></li>
+        <li><a class="navlink" href="#products">Products</a></li>
+        <li><a class="navlink" href="#services">Services</a></li>
+        <li><a class="navlink" href="#gallery">Gallery</a></li>
+        <li><a class="navlink" href="#projects">Projects</a></li>
+        <li><a class="navlink" href="#about">About us</a></li>
+        <li><a class="navlink" href="#contact">Contact us</a></li>
+      </ul>
+      <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="tag">Small &amp; Large Format Print Studio</div>
+        <h1 class="display">FINE ART<br><span class="out">PRINTS THAT</span><br><span class="cmy-text">LIVE</span> ON WALLS</h1>
+        <p class="lead">From museum-grade canvas and custom wallpaper to full-room murals, textiles and UV chrome effects — we design and produce for hospitality, retail and residential spaces.</p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-fill">View Projects ↗</a>
+          <a href="#contact" class="btn btn-ghost">Start a Project</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><div class="n cmy-text">3</div><div class="l">Cities · LA / MIA / LV</div></div>
+          <div class="stat"><div class="n cmy-text">100%</div><div class="l">In-house design + print</div></div>
+          <div class="stat"><div class="n cmy-text">∞</div><div class="l">Substrates &amp; finishes</div></div>
+        </div>
+      </div>
+      <div class="hero-art" id="heroArt"></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="marquee-track" id="mq">
+    <span>CANVAS FINE ART<span>CUSTOM WALLPAPER</span><span>MURALS</span><span>DTF + SUBLIMATION</span><span>LAMINATED VINYL STICKERS</span><span>BANNERS</span><span>ECO-SOLVENT</span><span>UV CHROME</span></span>
+    <span>CANVAS FINE ART<span>CUSTOM WALLPAPER</span><span>MURALS</span><span>DTF + SUBLIMATION</span><span>LAMINATED VINYL STICKERS</span><span>BANNERS</span><span>ECO-SOLVENT</span><span>UV CHROME</span></span>
+  </div>
+</div>
+
+<section id="products">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">01 — WHAT WE MAKE</div><h2>Products</h2></div>
+      <p>Every product printed in-house with archival inks and finishes built to last in real-world spaces.</p>
+    </div>
+    <div class="prod-grid reveal">
+      <div class="prod"><div class="prod-img" data-prod="canvas"></div><div class="prod-body"><div class="pn">P/01</div><h3>Canvas Fine Art</h3><p>Gallery-wrapped, museum-grade canvas with archival pigment inks for collectors and interiors.</p><div class="arrow">→</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="wallpaper"></div><div class="prod-body"><div class="pn">P/02</div><h3>Custom Wallpaper</h3><p>Made-to-measure wallpaper printed to your exact wall dimensions and artwork.</p><div class="arrow">→</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="mural"></div><div class="prod-body"><div class="pn">P/03</div><h3>Murals</h3><p>Floor-to-ceiling murals for hotels, restaurants and statement residential walls.</p><div class="arrow">→</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="apparel"></div><div class="prod-body"><div class="pn">P/04</div><h3>Apparel &amp; Textiles</h3><p>Pullovers, caps, mugs and more via DTF and dye-sublimation — vivid, durable, washable.</p><div class="arrow">→</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="stickers"></div><div class="prod-body"><div class="pn">P/05</div><h3>Laminated Vinyl Stickers</h3><p>Die-cut, weather-proof laminated vinyl decals for branding and product packaging.</p><div class="arrow">→</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="banner"></div><div class="prod-body"><div class="pn">P/06</div><h3>Advertising Banners</h3><p>Indoor and outdoor banners printed with eco-solvent inks for stretch substrates.</p><div class="arrow">→</div></div></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">02 — HOW WE WORK</div><h2>Services</h2></div>
+      <p>A full-stack print partner — concept to install. We own the design and the production line end to end.</p>
+    </div>
+    <div class="serv-list reveal">
+      <div class="serv"><div class="num">01</div><div><h3>Design &amp; Art Direction</h3><p>In-house creative for hospitality &amp; residential — concepts, layouts and print-ready files.</p></div></div>
+      <div class="serv"><div class="num">02</div><div><h3>Large Format Production</h3><p>Wide-format printing for wallpaper, murals, canvas and signage at any scale.</p></div></div>
+      <div class="serv"><div class="num">03</div><div><h3>Eco-Solvent Printing</h3><p>Flexible, stretchable substrates printed with durable eco-solvent inks.</p></div></div>
+      <div class="serv"><div class="num">04</div><div><h3>UV Printing</h3><p>Chrome, metallic and iridescent (tornasol) effects on rigid &amp; specialty materials.</p></div></div>
+      <div class="serv"><div class="num">05</div><div><h3>DTF &amp; Sublimation</h3><p>Apparel and hard-goods decoration — caps, garments, mugs and promotional items.</p></div></div>
+      <div class="serv"><div class="num">06</div><div><h3>Lamination &amp; Finishing</h3><p>Cold/hot lamination, contour cutting and install-ready finishing for longevity.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">03 — SELECTED WORK</div><h2>Gallery</h2></div>
+      <p>A look at finished installs, prints and the studio floor. (Replace these with your real photos.)</p>
+    </div>
+    <div class="gal-grid reveal" id="galGrid"></div>
+  </div>
+</section>
+
+<section id="projects" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">04 — FEATURED PROJECTS</div><h2>Projects</h2></div>
+      <p>Spaces we designed and produced — from Las Vegas suites to Florida dining rooms.</p>
+    </div>
+    <div class="reveal">
+      <div class="proj">
+        <div class="proj-art" data-art="vanderpump"></div>
+        <div class="proj-info">
+          <div class="loc">Las Vegas, NV</div><h3>The Vanderpump<br>Hotel</h3>
+          <p>Custom wallpaper, fine-art canvas and feature murals throughout the guest rooms — bold, layered interiors that carry the brand into every suite.</p>
+          <div class="meta"><div><span class="k">Scope</span><span class="v">Wallpaper · Canvas · Murals</span></div><div><span class="k">Type</span><span class="v">Hospitality / Rooms</span></div></div>
+        </div>
+      </div>
+      <div class="proj">
+        <div class="proj-art" data-art="ethereal"></div>
+        <div class="proj-info">
+          <div class="loc">Delray Beach, FL</div><h3>Ethereal<br>Restaurant</h3>
+          <p>Atmospheric murals and printed wall treatments that set the dining mood — produced and installed for a seamless, immersive interior.</p>
+          <div class="meta"><div><span class="k">Scope</span><span class="v">Murals · Wall Graphics</span></div><div><span class="k">Type</span><span class="v">Restaurant</span></div></div>
+        </div>
+      </div>
+      <div class="proj">
+        <div class="proj-art" data-art="glimmer"></div>
+        <div class="proj-info">
+          <div class="loc">Delray Beach, FL</div><h3>Glimmer<br>Cafe</h3>
+          <p>Bright, iridescent UV-finished graphics and custom wallpaper that give the café its signature glow and shareable corners.</p>
+          <div class="meta"><div><span class="k">Scope</span><span class="v">UV Graphics · Wallpaper</span></div><div><span class="k">Type</span><span class="v">Café</span></div></div>
+        </div>
+      </div>
+      <div class="proj">
+        <div class="proj-art" data-art="wolf"></div>
+        <div class="proj-info">
+          <div class="loc">Phoenix, AZ</div><h3>Wolf by<br>Vanderpump</h3>
+          <p>Statement murals and large-format canvas pieces anchoring the space — designed in-house and produced for a clean, high-impact install.</p>
+          <div class="meta"><div><span class="k">Scope</span><span class="v">Murals · Canvas</span></div><div><span class="k">Type</span><span class="v">Restaurant</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="clients reveal" style="margin-top:90px">
+      <div class="idx mono" style="font-size:.8rem;letter-spacing:.1em;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent">TRUSTED BY</div>
+      <div class="client-row">
+        <div class="c">LISA VANDERPUMP</div><div class="c">NICK ALAIN</div><a class="c" href="https://en.wikipedia.org/wiki/Caesars_Entertainment" target="_blank" rel="noopener">Caesars Entertainment</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div><div class="idx">05 — THE STUDIO</div><h2>About us</h2></div>
+      <p>A print shop where design and production live under one roof.</p>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <div class="big">We turn artwork into <span class="cmy-text">physical space</span> — printed, finished and installed with obsessive attention to color and craft.</div>
+        <p>XGRAPHiiiCS is a small &amp; large format print studio specializing in canvas fine art, custom wallpaper and murals. We handle both the design and the production for hotels, restaurants and residential projects, plus textiles, stickers, banners and specialty effects.</p>
+        <p>From eco-solvent printing for stretch materials to UV inks for chrome and iridescent finishes, our shop runs professional-grade equipment to deliver consistent, durable, gallery-quality results — at any scale.</p>
+        <div class="tech-strip">
+          <span>Mimaki UJV100-160Plus</span><span>Mimaki CJV200-160</span><span>Mimaki LA-160W</span><span>Epson ET-8550</span><span>Heat Press Nation 16×24</span><span>UV · Eco-Solvent · DTF · Sublimation</span>
+        </div>
+      </div>
+      <div class="about-art" id="aboutArt"></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal"><div><div class="idx">06 — LET'S TALK</div><h2>Contact us</h2></div></div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <h3>Have a wall, a space<br>or an idea? <span class="cmy-text">Let's print it.</span></h3>
+        <div class="row"><div class="k">Email</div><div class="v">hello@xgraphiics.com</div></div>
+        <div class="row"><div class="k">Studio</div><div class="v">Serving LA · Miami · Las Vegas</div></div>
+        <div class="row"><div class="k">Hours</div><div class="v">Mon–Fri · 9am – 6pm</div></div>
+      </div>
+      <form onsubmit="event.preventDefault();this.reset();alert('Thanks! We will get back to you shortly.');">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <input type="text" placeholder="Project type (mural, wallpaper, apparel…)">
+        <textarea rows="4" placeholder="Tell us about your project"></textarea>
+        <button type="submit">Send Inquiry</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="foot-logo"><span class="x">X</span><span class="blk">GRAPH</span><span class="iii">iii</span><span class="blk">CS</span></div>
+        <p style="color:rgba(255,255,255,.5);margin-top:14px;max-width:340px;font-weight:300;font-size:.92rem">Fine art &amp; large format print studio. Design + production for hospitality, retail and residential.</p>
+      </div>
+      <div>
+        <div class="k mono" style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent">Follow the work</div>
+        <div class="socials">
+          <a href="#" class="soc"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.3 1 .4 2.2.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .3-2.2.4-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-.9 0-1.4.2-1.7.3-.4.2-.7.4-1 .7-.3.3-.5.6-.7 1-.1.3-.3.8-.3 1.7-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c0 .9.2 1.4.3 1.7.2.4.4.7.7 1 .3.3.6.5 1 .7.3.1.8.3 1.7.3 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c.9 0 1.4-.2 1.7-.3.4-.2.7-.4 1-.7.3-.3.5-.6.7-1 .1-.3.3-.8.3-1.7.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c0-.9-.2-1.4-.3-1.7-.2-.4-.4-.7-.7-1-.3-.3-.6-.5-1-.7-.3-.1-.8-.3-1.7-.3-1.2-.1-1.6-.1-4.7-.1zm0 3.1a4.9 4.9 0 110 9.8 4.9 4.9 0 010-9.8zm0 8.1a3.2 3.2 0 100-6.4 3.2 3.2 0 000 6.4zm6.3-8.3a1.15 1.15 0 11-2.3 0 1.15 1.15 0 012.3 0z"/></svg>Instagram</a>
+          <a href="#" class="soc"><svg viewBox="0 0 24 24"><path d="M19.6 3H4.4C3.6 3 3 3.6 3 4.4v15.2c0 .8.6 1.4 1.4 1.4h15.2c.8 0 1.4-.6 1.4-1.4V4.4c0-.8-.6-1.4-1.4-1.4zM8.3 18.3H5.7V9.7h2.6v8.6zM7 8.5a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm11.3 9.8h-2.6v-4.2c0-1-.4-1.7-1.3-1.7-.7 0-1.1.5-1.3 1-.1.2-.1.4-.1.7v4.2h-2.6V9.7h2.6v1.1c.3-.5 1-1.3 2.4-1.3 1.7 0 3 1.1 3 3.5v5.3z"/></svg>LinkedIn</a>
+          <a href="#" class="soc"><svg viewBox="0 0 24 24"><path d="M17 2H7C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5zm-2.5 9.9v4.2c0 1.6-1.3 3-3 3s-3-1.3-3-3 1.3-3 3-3c.2 0 .3 0 .5.1v1.6c-.2-.1-.3-.1-.5-.1-.8 0-1.4.6-1.4 1.4s.6 1.4 1.4 1.4 1.4-.6 1.4-1.4V6.4h1.6c0 .9.4 1.7 1 2.2.5.4 1.1.7 1.8.7v1.6c-1 0-2-.3-2.8-.9z"/></svg>TikTok</a>
+          <a href="#" class="soc"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0022 12z"/></svg>Facebook</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 XGRAPHiiiCS — All rights reserved</span>
+      <span>Small &amp; Large Format · Fine Art Print Studio</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   XGRAPHiiiCS — generated SVG illustration library (CMY brand)
+   Each slot renders a vector scene; an optional <img> from the
+   images/ folder overlays it. If the file is missing it's removed
+   (onerror) and the illustration shows underneath.
+   ============================================================ */
+const PAL={ink:'#0c0c0e',cy:'#0698D7',mg:'#C10078',yl:'#FCE902',
+  cream:'#f1ebe2',cream2:'#e7dfd2',wood:'#caa06b',
+  grey:'#d8d3cb',dark:'#26262c',dark2:'#34343c'};
+
+let _uid=0;
+function defs(u){return `<defs>
+ <linearGradient id="ch_${u}" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="${PAL.cy}"/><stop offset=".52" stop-color="${PAL.mg}"/><stop offset="1" stop-color="${PAL.yl}"/></linearGradient>
+ <linearGradient id="cv_${u}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${PAL.cy}"/><stop offset=".5" stop-color="${PAL.mg}"/><stop offset="1" stop-color="${PAL.yl}"/></linearGradient>
+ <linearGradient id="cd_${u}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${PAL.cy}"/><stop offset=".55" stop-color="${PAL.mg}"/><stop offset="1" stop-color="${PAL.yl}"/></linearGradient>
+ <radialGradient id="gl_${u}" cx="50%" cy="38%" r="70%"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+ <filter id="sh_${u}" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#000" flood-opacity=".22"/></filter>
+ <filter id="bl_${u}"><feGaussianBlur stdDeviation="13"/></filter>
+</defs>`;}
+function svg(u,inner){return `<svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${defs(u)}${inner}</svg>`;}
+function room(u,wall,floor){return `<rect width="400" height="400" fill="${wall||PAL.cream}"/><rect y="300" width="400" height="100" fill="${floor||PAL.grey}"/><rect y="296" width="400" height="5" fill="#000" opacity=".06"/>`;}
+
+/* ---------- PRODUCT / GALLERY SCENES ---------- */
+function sceneCanvas(u){return svg(u,`${room(u)}
+ <ellipse cx="165" cy="60" rx="190" ry="120" fill="url(#gl_${u})"/>
+ <g filter="url(#sh_${u})">
+  <rect x="66" y="64" width="172" height="206" rx="3" fill="#fff"/>
+  <rect x="78" y="76" width="148" height="182" fill="${PAL.cream2}"/>
+  <rect x="88" y="86" width="128" height="162" fill="url(#cd_${u})"/>
+  <circle cx="128" cy="150" r="46" fill="${PAL.cy}" opacity=".55" filter="url(#bl_${u})"/>
+  <circle cx="186" cy="200" r="40" fill="${PAL.yl}" opacity=".6" filter="url(#bl_${u})"/>
+  <path d="M88 206 Q152 120 216 178 L216 248 L88 248 Z" fill="${PAL.mg}" opacity=".32"/>
+ </g>
+ <g filter="url(#sh_${u})"><rect x="266" y="120" width="80" height="100" rx="2" fill="#fff"/><rect x="274" y="128" width="64" height="84" fill="${PAL.ink}"/><rect x="274" y="128" width="64" height="84" fill="url(#cv_${u})" opacity=".85"/></g>
+ <rect x="298" y="250" width="36" height="50" rx="4" fill="${PAL.dark}"/>
+ <path d="M316 250 q-26 -34 -8 -64 q14 26 8 64" fill="${PAL.cy}" opacity=".8"/>
+ <path d="M316 250 q26 -30 10 -58 q-12 24 -10 58" fill="${PAL.mg}" opacity=".75"/>
+ <path d="M316 250 q4 -40 -2 -70 q12 30 2 70" fill="${PAL.yl}" opacity=".8"/>`);}
+
+function sceneWallpaper(u){const pat=`<pattern id="wp_${u}" width="60" height="68" patternUnits="userSpaceOnUse"><rect width="60" height="68" fill="${PAL.cream}"/><circle cx="15" cy="17" r="8" fill="${PAL.cy}"/><circle cx="45" cy="51" r="8" fill="${PAL.mg}"/><path d="M0 42 q15 -16 30 0 t30 0" fill="none" stroke="${PAL.yl}" stroke-width="3"/></pattern>`;
+ return svg(u,`${pat}<rect width="400" height="400" fill="${PAL.cream2}"/>
+ <g filter="url(#sh_${u})"><rect x="36" y="0" width="150" height="300" fill="url(#wp_${u})"/><path d="M36 300 q38 22 75 0 t75 0 v16 q-38 22 -75 0 t-75 0 Z" fill="url(#wp_${u})"/></g>
+ <g filter="url(#sh_${u})"><rect x="208" y="0" width="156" height="360" fill="url(#wp_${u})" opacity=".97"/></g>
+ <g filter="url(#sh_${u})" transform="translate(120 332)"><rect x="0" y="0" width="172" height="50" rx="25" fill="url(#wp_${u})"/><ellipse cx="0" cy="25" rx="13" ry="25" fill="#fff"/><ellipse cx="0" cy="25" rx="6" ry="14" fill="${PAL.cy}"/></g>`);}
+
+function sceneMural(u){return svg(u,`${room(u,'#ece6dd','#cfc3b0')}
+ <path d="M0 60 C120 0 200 140 400 60 L400 300 L0 300 Z" fill="${PAL.cy}" opacity=".85"/>
+ <path d="M0 150 C140 80 240 220 400 150 L400 300 L0 300 Z" fill="${PAL.mg}" opacity=".72"/>
+ <path d="M0 232 C120 172 260 300 400 220 L400 300 L0 300 Z" fill="${PAL.yl}" opacity=".85"/>
+ <circle cx="300" cy="108" r="32" fill="#fff" opacity=".7"/>
+ <g stroke="${PAL.dark}" stroke-width="5" fill="none"><line x1="322" y1="120" x2="302" y2="300"/><line x1="354" y1="120" x2="360" y2="300"/><line x1="318" y1="162" x2="352" y2="162"/><line x1="314" y1="206" x2="356" y2="206"/><line x1="309" y1="250" x2="358" y2="250"/></g>
+ <g fill="${PAL.dark}"><circle cx="118" cy="206" r="14"/><rect x="104" y="220" width="28" height="54" rx="10"/><rect x="126" y="230" width="42" height="9" rx="4" transform="rotate(-20 126 230)"/></g>`);}
+
+function sceneApparel(u){return svg(u,`<rect width="400" height="400" fill="${PAL.cream}"/>
+ <ellipse cx="200" cy="362" rx="170" ry="20" fill="#000" opacity=".06"/>
+ <path d="M200 58 a10 10 0 1 1 .1 0" fill="none" stroke="${PAL.dark}" stroke-width="3"/>
+ <path d="M120 108 L200 76 L280 108" fill="none" stroke="${PAL.dark}" stroke-width="3"/>
+ <g filter="url(#sh_${u})">
+  <path d="M120 108 q-30 18 -40 70 l34 16 v130 q90 22 172 0 V194 l34 -16 q-10 -52 -40 -70 q-30 26 -60 26 q-30 0 -60 -26 Z" fill="#fff"/>
+  <circle cx="200" cy="210" r="46" fill="url(#cd_${u})"/>
+  <path d="M200 176 l12 24 26 4 -19 18 5 26 -24 -13 -24 13 5 -26 -19 -18 26 -4 Z" fill="#fff" opacity=".92"/>
+ </g>
+ <g filter="url(#sh_${u})" transform="translate(38 248)"><path d="M0 40 a55 40 0 0 1 110 0 Z" fill="url(#ch_${u})"/><path d="M0 40 q-26 4 -30 18 l40 0 Z" fill="${PAL.cy}"/></g>
+ <g filter="url(#sh_${u})" transform="translate(300 268)"><rect x="0" y="0" width="64" height="76" rx="8" fill="#fff"/><rect x="6" y="6" width="52" height="64" rx="5" fill="url(#cv_${u})"/><path d="M64 16 a20 20 0 0 1 0 42" fill="none" stroke="#fff" stroke-width="8"/></g>`);}
+
+function sceneStickers(u){
+ const sh=(x,y,r,shape,fill)=>{let inner;
+  if(shape==='star')inner=`<path d="M0 -${r} L${r*0.3} -${r*0.3} L${r} -${r*0.3} L${r*0.4} ${r*0.18} L${r*0.6} ${r} L0 ${r*0.5} L-${r*0.6} ${r} L-${r*0.4} ${r*0.18} L-${r} -${r*0.3} L-${r*0.3} -${r*0.3} Z"`;
+  else if(shape==='hex')inner=`<path d="M0 -${r} L${r*0.87} -${r*0.5} L${r*0.87} ${r*0.5} L0 ${r} L-${r*0.87} ${r*0.5} L-${r*0.87} -${r*0.5} Z"`;
+  else if(shape==='blob')inner=`<path d="M0 -${r} q${r} -${r*0.1} ${r*0.82} ${r*0.62} q${r*0.18} ${r} -${r*0.62} ${r} q-${r} ${r*0.1} -${r} -${r*0.62} q-${r*0.18} -${r} ${r*0.82} -${r} Z"`;
+  else inner=`<circle r="${r}"`;
+  return `<g transform="translate(${x} ${y}) rotate(${(x+y)%28-14})" filter="url(#sh_${u})"><g transform="scale(1.2)">${inner} fill="#fff"/></g>${inner} fill="${fill}"/></g>`;};
+ return svg(u,`<rect width="400" height="400" fill="${PAL.cream2}"/>
+ <g stroke="${PAL.cy}" stroke-width="1" opacity=".16">${Array.from({length:11}).map((_,i)=>`<line x1="${i*40}" y1="0" x2="${i*40}" y2="400"/><line x1="0" y1="${i*40}" x2="400" y2="${i*40}"/>`).join('')}</g>
+ ${sh(110,118,46,'star',PAL.yl)}${sh(272,108,44,'blob',PAL.cy)}${sh(128,272,42,'hex',PAL.mg)}${sh(290,282,48,'circle',`url(#cd_${u})`)}${sh(200,196,30,'circle',PAL.mg)}`);}
+
+function sceneBanner(u){return svg(u,`<rect width="400" height="400" fill="${PAL.cream}"/>
+ <ellipse cx="200" cy="372" rx="120" ry="15" fill="#000" opacity=".07"/>
+ <g filter="url(#sh_${u})"><rect x="120" y="40" width="160" height="300" rx="4" fill="url(#cv_${u})"/>
+  <circle cx="200" cy="120" r="44" fill="#fff" opacity=".22"/>
+  <rect x="150" y="190" width="100" height="12" rx="6" fill="#fff" opacity=".9"/>
+  <rect x="150" y="212" width="74" height="9" rx="4" fill="#fff" opacity=".6"/>
+  <rect x="150" y="252" width="100" height="34" rx="6" fill="#fff" opacity=".18"/></g>
+ <rect x="108" y="338" width="184" height="14" rx="7" fill="${PAL.dark}"/>
+ <rect x="196" y="28" width="8" height="22" rx="4" fill="${PAL.dark2}"/>`);}
+
+function scenePrinter(u){return svg(u,`<rect width="400" height="400" fill="#e9e4db"/><rect y="300" width="400" height="100" fill="#d2ccc1"/>
+ <g filter="url(#sh_${u})">
+  <rect x="38" y="118" width="324" height="124" rx="10" fill="#fff"/>
+  <rect x="38" y="118" width="324" height="30" rx="10" fill="${PAL.dark}"/>
+  <circle cx="68" cy="133" r="6" fill="${PAL.cy}"/><circle cx="88" cy="133" r="6" fill="${PAL.mg}"/><circle cx="108" cy="133" r="6" fill="${PAL.yl}"/>
+  <rect x="38" y="202" width="324" height="40" fill="#eceae6"/>
+  <rect x="60" y="242" width="16" height="58" fill="${PAL.dark2}"/><rect x="324" y="242" width="16" height="58" fill="${PAL.dark2}"/>
+ </g>
+ <g filter="url(#sh_${u})"><rect x="120" y="150" width="160" height="190" fill="#fff"/>
+  <rect x="132" y="162" width="136" height="166" fill="url(#cd_${u})"/>
+  <circle cx="175" cy="220" r="34" fill="${PAL.cy}" opacity=".6" filter="url(#bl_${u})"/>
+  <circle cx="225" cy="262" r="30" fill="${PAL.yl}" opacity=".6" filter="url(#bl_${u})"/></g>
+ <rect x="38" y="158" width="324" height="6" fill="${PAL.dark}" opacity=".5"/>
+ <rect x="188" y="150" width="36" height="20" rx="3" fill="${PAL.dark}"/>`);}
+
+function sceneHeatPress(u){return svg(u,`<rect width="400" height="400" fill="#e9e4db"/><rect y="312" width="400" height="88" fill="#d2ccc1"/>
+ <g filter="url(#sh_${u})">
+  <rect x="118" y="250" width="204" height="62" rx="6" fill="${PAL.dark}"/>
+  <rect x="138" y="234" width="164" height="20" rx="4" fill="#fff"/>
+  <rect x="148" y="240" width="144" height="14" fill="url(#ch_${u})"/>
+  <rect x="128" y="150" width="184" height="40" rx="6" fill="${PAL.dark2}"/>
+  <rect x="190" y="110" width="20" height="44" fill="${PAL.dark}"/>
+  <path d="M200 110 q60 -10 70 -60" fill="none" stroke="${PAL.dark}" stroke-width="10" stroke-linecap="round"/>
+  <g stroke="${PAL.mg}" stroke-width="3" fill="none" opacity=".5"><path d="M160 200 q6 10 0 20"/><path d="M200 204 q6 10 0 20"/><path d="M240 200 q6 10 0 20"/></g>
+ </g>
+ <g fill="${PAL.dark}"><circle cx="322" cy="150" r="20"/><path d="M302 175 q20 -8 40 0 l6 92 l-52 0 Z"/><rect x="300" y="180" width="30" height="10" rx="5" transform="rotate(25 300 180)"/></g>
+ <g filter="url(#sh_${u})"><rect x="58" y="250" width="50" height="62" rx="6" fill="#fff"/><rect x="66" y="258" width="34" height="46" fill="url(#cv_${u})"/></g>`);}
+
+function sceneLam(u){return svg(u,`<rect width="400" height="400" fill="#e9e4db"/><rect y="300" width="400" height="100" fill="#d2ccc1"/>
+ <g filter="url(#sh_${u})">
+  <rect x="60" y="150" width="280" height="40" rx="20" fill="${PAL.dark}"/>
+  <rect x="60" y="210" width="280" height="40" rx="20" fill="${PAL.dark2}"/>
+  <circle cx="60" cy="170" r="22" fill="#fff"/><circle cx="340" cy="170" r="22" fill="#fff"/>
+  <circle cx="60" cy="230" r="22" fill="#fff"/><circle cx="340" cy="230" r="22" fill="#fff"/>
+ </g>
+ <g filter="url(#sh_${u})"><rect x="150" y="250" width="120" height="120" fill="#fff"/><rect x="160" y="260" width="100" height="100" fill="url(#cd_${u})"/><path d="M160 260 l40 0 -40 100 0 -40 Z" fill="#fff" opacity=".25"/></g>
+ <g filter="url(#sh_${u})"><rect x="150" y="100" width="120" height="44" rx="22" fill="#fff" opacity=".88"/><ellipse cx="150" cy="122" rx="12" ry="22" fill="${PAL.cy}" opacity=".5"/></g>`);}
+
+function sceneUV(u){return svg(u,`<rect width="400" height="400" fill="${PAL.ink}"/>
+ <g filter="url(#sh_${u})"><rect x="70" y="70" width="260" height="260" rx="6" fill="url(#cd_${u})"/>
+  <path d="M70 70 L330 70 L330 150 Q200 220 70 150 Z" fill="#fff" opacity=".35"/>
+  <path d="M70 200 Q200 270 330 200 L330 330 L70 330 Z" fill="${PAL.cy}" opacity=".4"/>
+  <ellipse cx="200" cy="200" rx="120" ry="60" fill="url(#gl_${u})"/>
+  <circle cx="120" cy="120" r="4" fill="#fff"/><circle cx="280" cy="160" r="3" fill="#fff"/><circle cx="240" cy="270" r="4" fill="#fff"/></g>
+ <rect x="120" y="34" width="160" height="14" rx="7" fill="${PAL.dark2}"/>
+ <g stroke="${PAL.mg}" stroke-width="2" opacity=".5"><line x1="150" y1="50" x2="150" y2="66"/><line x1="200" y1="50" x2="200" y2="68"/><line x1="250" y1="50" x2="250" y2="66"/></g>`);}
+
+function sceneMugs(u){const mug=(x,fill)=>`<g filter="url(#sh_${u})" transform="translate(${x} 0)"><rect x="0" y="158" width="74" height="94" rx="10" fill="#fff"/><rect x="8" y="166" width="58" height="78" rx="6" fill="${fill}"/><path d="M74 184 a24 24 0 0 1 0 48" fill="none" stroke="#fff" stroke-width="9"/></g>`;
+ return svg(u,`<rect width="400" height="400" fill="${PAL.cream}"/><rect y="252" width="400" height="148" fill="${PAL.cream2}"/><ellipse cx="200" cy="252" rx="180" ry="13" fill="#000" opacity=".05"/>
+ ${mug(40,`url(#cv_${u})`)}${mug(165,PAL.cy)}${mug(290,PAL.mg)}`);}
+
+function sceneSuite(u){const pat=`<pattern id="sp_${u}" width="50" height="58" patternUnits="userSpaceOnUse"><rect width="50" height="58" fill="#efe7dc"/><path d="M25 8 q12 14 0 28 q-12 -14 0 -28" fill="${PAL.mg}" opacity=".32"/><circle cx="6" cy="40" r="3" fill="${PAL.cy}" opacity=".4"/><circle cx="44" cy="40" r="3" fill="${PAL.yl}" opacity=".5"/></pattern>`;
+ return svg(u,`${pat}<rect width="400" height="400" fill="url(#sp_${u})"/><rect y="300" width="400" height="100" fill="${PAL.wood}"/>
+ <g filter="url(#sh_${u})"><rect x="120" y="40" width="160" height="100" rx="3" fill="#fff"/><rect x="130" y="50" width="140" height="80" fill="url(#cd_${u})"/><circle cx="170" cy="92" r="26" fill="${PAL.cy}" opacity=".6" filter="url(#bl_${u})"/><circle cx="220" cy="100" r="22" fill="${PAL.yl}" opacity=".6" filter="url(#bl_${u})"/></g>
+ <rect x="90" y="170" width="220" height="70" rx="8" fill="#3a2f3a"/>
+ <g filter="url(#sh_${u})"><rect x="70" y="236" width="260" height="70" rx="10" fill="#fff"/><rect x="70" y="236" width="260" height="24" rx="10" fill="${PAL.cream2}"/><rect x="96" y="216" width="70" height="40" rx="10" fill="#fff"/><rect x="234" y="216" width="70" height="40" rx="10" fill="#fff"/><rect x="70" y="280" width="260" height="20" fill="url(#ch_${u})" opacity=".9"/></g>
+ <rect x="34" y="250" width="40" height="56" fill="#3a2f3a"/><rect x="326" y="250" width="40" height="56" fill="#3a2f3a"/>
+ <path d="M44 250 l20 0 6 -26 -32 0 Z" fill="${PAL.yl}" opacity=".85"/><path d="M336 250 l20 0 6 -26 -32 0 Z" fill="${PAL.yl}" opacity=".85"/>`);}
+
+/* ---------- PROJECT SCENES ---------- */
+function sceneVanderpump(u){const pat=`<pattern id="vp_${u}" width="46" height="54" patternUnits="userSpaceOnUse"><rect width="46" height="54" fill="#2a1020"/><path d="M23 8 q14 16 0 34 q-14 -18 0 -34" fill="${PAL.mg}" opacity=".55"/><circle cx="6" cy="42" r="3" fill="${PAL.yl}" opacity=".5"/></pattern>`;
+ return svg(u,`${pat}<rect width="400" height="400" fill="url(#vp_${u})"/><rect y="310" width="400" height="90" fill="#1c0c16"/>
+ <line x1="200" y1="0" x2="200" y2="34" stroke="${PAL.yl}" stroke-width="2" opacity=".6"/>
+ <g fill="${PAL.yl}" opacity=".9"><circle cx="200" cy="40" r="6"/><circle cx="176" cy="54" r="4"/><circle cx="224" cy="54" r="4"/><circle cx="188" cy="66" r="3"/><circle cx="212" cy="66" r="3"/></g>
+ <ellipse cx="200" cy="60" rx="70" ry="40" fill="url(#gl_${u})"/>
+ <g filter="url(#sh_${u})"><rect x="120" y="86" width="160" height="96" rx="3" fill="#caa14a"/><rect x="129" y="95" width="142" height="78" fill="url(#cd_${u})"/><path d="M129 150 Q200 100 271 140 L271 173 L129 173 Z" fill="${PAL.mg}" opacity=".4"/><circle cx="170" cy="124" r="22" fill="${PAL.cy}" opacity=".55" filter="url(#bl_${u})"/></g>
+ <rect x="84" y="196" width="232" height="64" rx="10" fill="#5a1c34"/>
+ <g fill="#7a2848" opacity=".7"><circle cx="110" cy="226" r="3"/><circle cx="150" cy="226" r="3"/><circle cx="190" cy="226" r="3"/><circle cx="230" cy="226" r="3"/><circle cx="270" cy="226" r="3"/></g>
+ <g filter="url(#sh_${u})"><rect x="64" y="256" width="272" height="70" rx="10" fill="#f3ece0"/><rect x="90" y="236" width="74" height="40" rx="10" fill="#fff"/><rect x="236" y="236" width="74" height="40" rx="10" fill="#fff"/><rect x="64" y="300" width="272" height="20" fill="url(#ch_${u})"/></g>
+ <rect x="30" y="256" width="38" height="60" fill="#3a1322"/><rect x="332" y="256" width="38" height="60" fill="#3a1322"/>
+ <path d="M39 256 l20 0 6 -24 -32 0 Z" fill="${PAL.yl}"/><path d="M341 256 l20 0 6 -24 -32 0 Z" fill="${PAL.yl}"/>`);}
+
+function sceneEthereal(u){return svg(u,`<rect width="400" height="400" fill="#0c1a1d"/>
+ <path d="M0 0 C140 80 240 -20 400 60 L400 230 L0 230 Z" fill="${PAL.cy}" opacity=".7"/>
+ <path d="M0 80 C120 150 260 30 400 120 L400 230 L0 230 Z" fill="${PAL.mg}" opacity=".55"/>
+ <path d="M0 150 C140 90 240 200 400 150 L400 230 L0 230 Z" fill="${PAL.yl}" opacity=".55"/>
+ <g opacity=".55"><circle cx="80" cy="40" r="4" fill="#fff"/><circle cx="160" cy="60" r="4" fill="#fff"/><circle cx="240" cy="40" r="4" fill="#fff"/><circle cx="320" cy="60" r="4" fill="#fff"/></g>
+ <rect y="230" width="400" height="170" fill="#0a1416"/>
+ <line x1="110" y1="230" x2="110" y2="252" stroke="${PAL.yl}" stroke-width="1" opacity=".6"/><circle cx="110" cy="258" r="7" fill="${PAL.yl}" opacity=".85"/>
+ <line x1="200" y1="230" x2="200" y2="252" stroke="${PAL.yl}" stroke-width="1" opacity=".6"/><circle cx="200" cy="258" r="7" fill="${PAL.yl}" opacity=".85"/>
+ <line x1="290" y1="230" x2="290" y2="252" stroke="${PAL.yl}" stroke-width="1" opacity=".6"/><circle cx="290" cy="258" r="7" fill="${PAL.yl}" opacity=".85"/>
+ <g filter="url(#sh_${u})"><ellipse cx="130" cy="330" rx="50" ry="14" fill="#132426"/><rect x="124" y="300" width="12" height="40" fill="#1a2e30"/><ellipse cx="130" cy="300" rx="44" ry="12" fill="#16292b"/><ellipse cx="280" cy="346" rx="56" ry="15" fill="#132426"/><rect x="274" y="312" width="12" height="44" fill="#1a2e30"/><ellipse cx="280" cy="312" rx="48" ry="13" fill="#16292b"/></g>`);}
+
+function sceneGlimmer(u){return svg(u,`<rect width="400" height="400" fill="#f3eef6"/>
+ <rect x="0" y="0" width="400" height="250" fill="url(#cd_${u})" opacity=".92"/>
+ <path d="M0 0 L400 0 L400 90 Q200 150 0 90 Z" fill="#fff" opacity=".3"/>
+ <ellipse cx="200" cy="90" rx="160" ry="60" fill="url(#gl_${u})"/>
+ <line x1="90" y1="0" x2="90" y2="40" stroke="#fff" stroke-width="2" opacity=".7"/><path d="M76 40 a14 14 0 0 1 28 0 Z" fill="${PAL.yl}"/>
+ <line x1="200" y1="0" x2="200" y2="40" stroke="#fff" stroke-width="2" opacity=".7"/><path d="M186 40 a14 14 0 0 1 28 0 Z" fill="${PAL.yl}"/>
+ <line x1="310" y1="0" x2="310" y2="40" stroke="#fff" stroke-width="2" opacity=".7"/><path d="M296 40 a14 14 0 0 1 28 0 Z" fill="${PAL.yl}"/>
+ <rect y="250" width="400" height="150" fill="#efe9e0"/>
+ <g filter="url(#sh_${u})"><rect x="40" y="250" width="320" height="80" rx="6" fill="#fff"/><rect x="40" y="250" width="320" height="16" fill="url(#ch_${u})"/></g>
+ <g filter="url(#sh_${u})"><circle cx="110" cy="334" r="18" fill="${PAL.mg}"/><rect x="107" y="346" width="6" height="40" fill="${PAL.dark2}"/></g>
+ <g filter="url(#sh_${u})"><circle cx="200" cy="334" r="18" fill="${PAL.cy}"/><rect x="197" y="346" width="6" height="40" fill="${PAL.dark2}"/></g>
+ <g filter="url(#sh_${u})"><circle cx="290" cy="334" r="18" fill="${PAL.yl}"/><rect x="287" y="346" width="6" height="40" fill="${PAL.dark2}"/></g>`);}
+
+function sceneWolf(u){return svg(u,`<rect width="400" height="400" fill="#161210"/>
+ <polygon points="0,0 200,0 60,250 0,250" fill="${PAL.cy}" opacity=".85"/>
+ <polygon points="200,0 400,0 400,250 220,250" fill="${PAL.mg}" opacity=".8"/>
+ <polygon points="60,250 220,250 140,90" fill="${PAL.yl}" opacity=".9"/>
+ <polygon points="140,90 220,250 300,120" fill="#fff" opacity=".12"/>
+ <rect y="250" width="400" height="150" fill="#0f0c0a"/>
+ <rect x="77" y="40" width="6" height="60" fill="${PAL.yl}" opacity=".8"/><ellipse cx="80" cy="70" rx="20" ry="50" fill="url(#gl_${u})"/>
+ <rect x="317" y="40" width="6" height="60" fill="${PAL.yl}" opacity=".8"/><ellipse cx="320" cy="70" rx="20" ry="50" fill="url(#gl_${u})"/>
+ <g filter="url(#sh_${u})"><rect x="40" y="280" width="320" height="60" rx="10" fill="#3a1322"/><rect x="40" y="270" width="320" height="22" rx="10" fill="#4a1a2c"/><rect x="90" y="276" width="44" height="18" rx="9" fill="#5a2238"/><rect x="160" y="276" width="44" height="18" rx="9" fill="#5a2238"/><rect x="230" y="276" width="44" height="18" rx="9" fill="#5a2238"/><rect x="300" y="276" width="44" height="18" rx="9" fill="#5a2238"/></g>
+ <ellipse cx="200" cy="372" rx="80" ry="15" fill="#000" opacity=".4"/>`);}
+
+const SCENES={canvas:sceneCanvas,wallpaper:sceneWallpaper,mural:sceneMural,apparel:sceneApparel,stickers:sceneStickers,banner:sceneBanner,printer:scenePrinter,heatpress:sceneHeatPress,lam:sceneLam,uv:sceneUV,mugs:sceneMugs,suite:sceneSuite,vanderpump:sceneVanderpump,ethereal:sceneEthereal,glimmer:sceneGlimmer,wolf:sceneWolf};
+function render(key){_uid++;return (SCENES[key]||sceneCanvas)('u'+_uid);}
+function photo(file){return file?`<img class="photo" src="images/${file}" alt="" loading="lazy" onerror="this.remove()">`:'';}
+
+/* ---------- WIRING ---------- */
+// Products
+document.querySelectorAll('.prod-img').forEach(el=>{const k=el.dataset.prod;el.innerHTML=render(k)+photo('product-'+k+'.jpg');});
+
+// Hero + About
+document.getElementById('heroArt').innerHTML=render('canvas')+photo('hero.jpg');
+document.getElementById('aboutArt').innerHTML=render('printer')+photo('studio.jpg');
+
+// Projects
+const projFile={vanderpump:'project-vanderpump-hotel.jpg',ethereal:'project-ethereal.jpg',glimmer:'project-glimmer-cafe.jpg',wolf:'project-wolf.jpg'};
+document.querySelectorAll('.proj-art').forEach(el=>{const k=el.dataset.art;el.innerHTML=render(k)+photo(projFile[k]);});
+
+// Gallery
+const gal=[
+ {cls:'g-wide',  key:'suite',    cap:'GUEST SUITE // WALLPAPER INSTALL', img:'gallery-1.jpg'},
+ {cls:'',        key:'canvas',   cap:'CANVAS FINE ART',                 img:'gallery-2.jpg'},
+ {cls:'g-tall',  key:'printer',  cap:'WIDE-FORMAT PRINTING',            img:'gallery-3.jpg'},
+ {cls:'',        key:'uv',       cap:'UV CHROME EFFECT',                img:'gallery-4.jpg'},
+ {cls:'',        key:'lam',      cap:'LAMINATION',                      img:'gallery-5.jpg'},
+ {cls:'g-wide',  key:'mural',    cap:'RESTAURANT MURAL',                img:'gallery-6.jpg'},
+ {cls:'',        key:'apparel',  cap:'DTF APPAREL',                     img:'gallery-7.jpg'},
+ {cls:'',        key:'mugs',     cap:'SUBLIMATION MUGS',                img:'gallery-8.jpg'},
+ {cls:'g-tall',  key:'heatpress',cap:'OPERATOR // HEAT PRESS',          img:'gallery-9.jpg'},
+ {cls:'',        key:'stickers', cap:'VINYL STICKERS',                  img:'gallery-10.jpg'},
+ {cls:'',        key:'banner',   cap:'BANNER PRODUCTION',               img:'gallery-11.jpg'}
+];
+document.getElementById('galGrid').innerHTML=gal.map(g=>`<div class="gal-item ${g.cls}">${render(g.key)}${photo(g.img)}<div class="cap"><span>${g.cap}</span></div></div>`).join('');
+
+// Nav + scroll + reveal
+const burger=document.getElementById('burger'),nav=document.getElementById('nav');
+burger.addEventListener('click',()=>nav.classList.toggle('open'));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+let lastY=0;const header=document.querySelector('header');
+window.addEventListener('scroll',()=>{const y=window.scrollY;header.style.transform=(y>lastY&&y>200)?'translateY(-100%)':'translateY(0)';lastY=y;});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+</script>
+</body>
+</html>
