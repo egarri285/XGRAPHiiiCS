@@ -81,7 +81,11 @@ nav a.navlink:hover::after{width:100%}
 .btn-fill:hover{border-color:transparent}
 .btn-fill:hover::before{opacity:1}
 .btn-ghost:hover{background:var(--ink);color:#fff}
+<<<<<<< HEAD
 .hero-art{border:1px solid var(--line);border-radius:6px;overflow:hidden;align-self:center}
+=======
+.hero-art{aspect-ratio:3/4;border:1px solid var(--line);position:relative;overflow:hidden;border-radius:6px}
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 .stat-row{display:flex;gap:46px;margin-top:60px;flex-wrap:wrap}
 .stat .n{font-family:'Santral','Jost','Montserrat',sans-serif;font-size:2.4rem;line-height:1}
 .stat .l{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
@@ -129,6 +133,7 @@ section{padding:110px 0}
 .serv p{margin-top:8px;font-size:.9rem;color:rgba(255,255,255,.6);font-weight:300;line-height:1.55}
 
 /* ===== GALLERY ===== */
+<<<<<<< HEAD
 .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:280px;gap:14px}
 .gal-item{overflow:hidden;border-radius:6px;position:relative;cursor:pointer;border:1px solid var(--line);background:var(--ink)}
 .gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
@@ -144,6 +149,21 @@ section{padding:110px 0}
 .prod:hover .photo{transform:scale(1.06)}
 /* hero video */
 .hero-video{width:100%;height:auto;display:block;border-radius:6px}
+=======
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:14px}
+.gal-item{overflow:hidden;border-radius:6px;position:relative;cursor:pointer;border:1px solid var(--line)}
+.gal-item .cap{position:absolute;inset:0;display:flex;align-items:flex-end;padding:18px;background:linear-gradient(transparent 45%,rgba(12,12,14,.82));opacity:0;transition:.35s}
+.gal-item:hover .cap{opacity:1}
+.gal-item .cap span{color:#fff;font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase}
+.gal-item svg{width:100%;height:100%;display:block;transition:.5s}
+.gal-item:hover svg{transform:scale(1.06)}
+.g-tall{grid-row:span 2}
+.g-wide{grid-column:span 2}
+/* real-photo overlay: drop a file into images/ and it covers the SVG illustration; if missing, it's removed and the SVG shows */
+.prod-img,.about-art{position:relative}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:var(--ink);transition:transform .55s ease}
+.prod:hover .photo,.gal-item:hover .photo{transform:scale(1.06)}
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 
 /* ===== PROJECTS ===== */
 .proj{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;border:1px solid var(--line);background:var(--paper)}
@@ -152,6 +172,7 @@ section{padding:110px 0}
 .proj:nth-child(even){grid-template-columns:1.1fr .9fr}
 .proj:nth-child(even) .proj-art{order:2}
 .proj+.proj{border-top:none}
+<<<<<<< HEAD
 .proj-art{min-height:380px;position:relative;overflow:hidden;cursor:pointer}
 .proj-art svg{position:absolute;inset:0;width:100%;height:100%}
 .proj-art .proj-hint{position:absolute;bottom:16px;right:16px;z-index:3;background:rgba(12,12,14,.65);color:#fff;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.08em;padding:7px 14px;border-radius:40px;opacity:0;transition:.3s;pointer-events:none;backdrop-filter:blur(6px)}
@@ -175,6 +196,10 @@ section{padding:110px 0}
 .lb-dots{position:fixed;bottom:50px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
 .lb-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:.2s}
 .lb-dots span.active{background:#fff;transform:scale(1.2)}
+=======
+.proj-art{min-height:380px;position:relative;overflow:hidden}
+.proj-art svg{position:absolute;inset:0;width:100%;height:100%}
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 .proj-info{padding:48px;display:flex;flex-direction:column;justify-content:center}
 .proj-info .loc{font-family:'Space Mono',monospace;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
 .proj-info h3{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.05;margin:16px 0 14px}
@@ -235,7 +260,11 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 @media(max-width:980px){
   .hero-grid{grid-template-columns:1fr}.hero-art{display:none}
   .prod-grid{grid-template-columns:1fr 1fr}.serv-list{grid-template-columns:1fr}
+<<<<<<< HEAD
   .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
+=======
+  .gal-grid{grid-template-columns:repeat(2,1fr)}
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
   .proj,.proj:nth-child(even){grid-template-columns:1fr}.proj:nth-child(even) .proj-art{order:0}
   .about-grid,.contact-grid{grid-template-columns:1fr}
 }
@@ -244,7 +273,11 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   nav ul{display:none}.burger{display:flex}
   nav.open ul{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;background:var(--paper);padding:24px 32px;gap:18px;border-bottom:1px solid var(--line)}
   .prod-grid{grid-template-columns:1fr}
+<<<<<<< HEAD
   .gal-grid{grid-template-columns:1fr;grid-auto-rows:240px}
+=======
+  .gal-grid{grid-template-columns:1fr;grid-auto-rows:200px}
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
   .g-wide,.g-tall{grid-column:auto;grid-row:auto}
   .stat-row{gap:28px}
 }
@@ -384,6 +417,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
           <div class="meta"><div><span class="k">Scope</span><span class="v">Murals · Canvas</span></div><div><span class="k">Type</span><span class="v">Restaurant</span></div></div>
         </div>
       </div>
+<<<<<<< HEAD
       <div class="proj">
         <div class="proj-art" data-art="pinkys"></div>
         <div class="proj-info">
@@ -392,6 +426,8 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
           <div class="meta"><div><span class="k">Scope</span><span class="v">Murals · Wall Graphics</span></div><div><span class="k">Type</span><span class="v">Restaurant / Hotel</span></div></div>
         </div>
       </div>
+=======
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
     </div>
 
     <div class="clients reveal" style="margin-top:90px">
@@ -429,7 +465,11 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
     <div class="contact-grid reveal">
       <div class="contact-info">
         <h3>Have a wall, a space<br>or an idea? <span class="cmy-text">Let's print it.</span></h3>
+<<<<<<< HEAD
         <div class="row"><div class="k">Email</div><div class="v">hello@xgraphiics.com</div></div>
+=======
+        <div class="row"><div class="k">Email</div><div class="v">info@xgraphiics.com</div></div>
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
         <div class="row"><div class="k">Studio</div><div class="v">Serving LA · Miami · Las Vegas</div></div>
         <div class="row"><div class="k">Hours</div><div class="v">Mon–Fri · 9am – 6pm</div></div>
       </div>
@@ -468,6 +508,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   </div>
 </footer>
 
+<<<<<<< HEAD
 <!-- LIGHTBOX -->
 <div id="lb" class="lb" role="dialog" aria-modal="true" aria-label="Project gallery">
   <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
@@ -478,6 +519,8 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   <div class="lb-counter" id="lbCounter"></div>
 </div>
 
+=======
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 <script>
 /* ============================================================
    XGRAPHiiiCS — generated SVG illustration library (CMY brand)
@@ -672,12 +715,17 @@ function sceneWolf(u){return svg(u,`<rect width="400" height="400" fill="#161210
  <g filter="url(#sh_${u})"><rect x="40" y="280" width="320" height="60" rx="10" fill="#3a1322"/><rect x="40" y="270" width="320" height="22" rx="10" fill="#4a1a2c"/><rect x="90" y="276" width="44" height="18" rx="9" fill="#5a2238"/><rect x="160" y="276" width="44" height="18" rx="9" fill="#5a2238"/><rect x="230" y="276" width="44" height="18" rx="9" fill="#5a2238"/><rect x="300" y="276" width="44" height="18" rx="9" fill="#5a2238"/></g>
  <ellipse cx="200" cy="372" rx="80" ry="15" fill="#000" opacity=".4"/>`);}
 
+<<<<<<< HEAD
 const SCENES={canvas:sceneCanvas,wallpaper:sceneWallpaper,mural:sceneMural,apparel:sceneApparel,stickers:sceneStickers,banner:sceneBanner,printer:scenePrinter,heatpress:sceneHeatPress,lam:sceneLam,uv:sceneUV,mugs:sceneMugs,suite:sceneSuite,vanderpump:sceneVanderpump,ethereal:sceneEthereal,glimmer:sceneGlimmer,wolf:sceneWolf,pinkys:sceneEthereal};
+=======
+const SCENES={canvas:sceneCanvas,wallpaper:sceneWallpaper,mural:sceneMural,apparel:sceneApparel,stickers:sceneStickers,banner:sceneBanner,printer:scenePrinter,heatpress:sceneHeatPress,lam:sceneLam,uv:sceneUV,mugs:sceneMugs,suite:sceneSuite,vanderpump:sceneVanderpump,ethereal:sceneEthereal,glimmer:sceneGlimmer,wolf:sceneWolf};
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 function render(key){_uid++;return (SCENES[key]||sceneCanvas)('u'+_uid);}
 function photo(file){return file?`<img class="photo" src="images/${file}" alt="" loading="lazy" onerror="this.remove()">`:'';}
 
 /* ---------- WIRING ---------- */
 // Products
+<<<<<<< HEAD
 document.querySelectorAll('.prod-img').forEach(el=>{const k=el.dataset.prod;el.innerHTML=render(k)+photo('product-'+k+'.png');});
 
 // Hero — logo sin fondo
@@ -772,6 +820,33 @@ document.getElementById('galGrid').innerHTML=gal.map((g,i)=>`
 document.querySelectorAll('.gal-item').forEach(el=>{
   el.addEventListener('click',()=>lbOpen(galImgs,+el.dataset.gal));
 });
+=======
+document.querySelectorAll('.prod-img').forEach(el=>{const k=el.dataset.prod;el.innerHTML=render(k)+photo('product-'+k+'.jpg');});
+
+// Hero + About
+document.getElementById('heroArt').innerHTML=render('canvas')+photo('hero.jpg');
+document.getElementById('aboutArt').innerHTML=render('printer')+photo('studio.jpg');
+
+// Projects
+const projFile={vanderpump:'project-vanderpump-hotel.jpg',ethereal:'project-ethereal.jpg',glimmer:'project-glimmer-cafe.jpg',wolf:'project-wolf.jpg'};
+document.querySelectorAll('.proj-art').forEach(el=>{const k=el.dataset.art;el.innerHTML=render(k)+photo(projFile[k]);});
+
+// Gallery
+const gal=[
+ {cls:'g-wide',  key:'suite',    cap:'GUEST SUITE // WALLPAPER INSTALL', img:'gallery-1.jpg'},
+ {cls:'',        key:'canvas',   cap:'CANVAS FINE ART',                 img:'gallery-2.jpg'},
+ {cls:'g-tall',  key:'printer',  cap:'WIDE-FORMAT PRINTING',            img:'gallery-3.jpg'},
+ {cls:'',        key:'uv',       cap:'UV CHROME EFFECT',                img:'gallery-4.jpg'},
+ {cls:'',        key:'lam',      cap:'LAMINATION',                      img:'gallery-5.jpg'},
+ {cls:'g-wide',  key:'mural',    cap:'RESTAURANT MURAL',                img:'gallery-6.jpg'},
+ {cls:'',        key:'apparel',  cap:'DTF APPAREL',                     img:'gallery-7.jpg'},
+ {cls:'',        key:'mugs',     cap:'SUBLIMATION MUGS',                img:'gallery-8.jpg'},
+ {cls:'g-tall',  key:'heatpress',cap:'OPERATOR // HEAT PRESS',          img:'gallery-9.jpg'},
+ {cls:'',        key:'stickers', cap:'VINYL STICKERS',                  img:'gallery-10.jpg'},
+ {cls:'',        key:'banner',   cap:'BANNER PRODUCTION',               img:'gallery-11.jpg'}
+];
+document.getElementById('galGrid').innerHTML=gal.map(g=>`<div class="gal-item ${g.cls}">${render(g.key)}${photo(g.img)}<div class="cap"><span>${g.cap}</span></div></div>`).join('');
+>>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 
 // Nav + scroll + reveal
 const burger=document.getElementById('burger'),nav=document.getElementById('nav');
