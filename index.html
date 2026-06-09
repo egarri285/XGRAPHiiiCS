@@ -89,8 +89,8 @@ nav a.navlink:hover::after{width:100%}
 /* marquee */
 .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--ink);color:#fff}
 .marquee-track{display:flex;gap:0;white-space:nowrap;animation:scroll 28s linear infinite;padding:16px 0}
-.marquee-track span{font-family:'Santral','Jost','Montserrat',sans-serif;font-size:1.1rem;letter-spacing:.02em;display:flex;align-items:center;gap:40px;padding-right:40px}
-.marquee-track span::after{content:"&times;";font-size:.85rem;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+.marquee-track span{font-family:'Santral','Jost','Montserrat',sans-serif;font-size:1.1rem;letter-spacing:.02em;display:inline-flex;align-items:center}
+.marquee-track span.sep{font-size:1.1rem;padding:0 32px}.marquee-track span.sep-c{color:#0698D7}.marquee-track span.sep-m{color:#C10078}.marquee-track span.sep-y{color:#FCE902}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
 /* ===== SECTION HEAD ===== */
@@ -295,8 +295,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 
 <div class="marquee">
   <div class="marquee-track" id="mq">
-    <span>CANVAS FINE ART<span>CUSTOM WALLPAPER</span><span>MURALS</span><span>DTF + SUBLIMATION</span><span>LAMINATED VINYL STICKERS</span><span>BANNERS</span><span>ECO-SOLVENT</span><span>UV CHROME</span></span>
-    <span>CANVAS FINE ART<span>CUSTOM WALLPAPER</span><span>MURALS</span><span>DTF + SUBLIMATION</span><span>LAMINATED VINYL STICKERS</span><span>BANNERS</span><span>ECO-SOLVENT</span><span>UV CHROME</span></span>
+    <span>CANVAS FINE ART</span><span class="sep sep-c">X</span><span>CUSTOM WALLPAPER</span><span class="sep sep-m">X</span><span>MURALS</span><span class="sep sep-y">X</span><span>DTF + SUBLIMATION</span><span class="sep sep-c">X</span><span>LAMINATED VINYL STICKERS</span><span class="sep sep-m">X</span><span>BANNERS</span><span class="sep sep-y">X</span><span>ECO-SOLVENT</span><span class="sep sep-c">X</span><span>UV CHROME</span><span class="sep sep-m">X</span><span>CANVAS FINE ART</span><span class="sep sep-c">X</span><span>CUSTOM WALLPAPER</span><span class="sep sep-m">X</span><span>MURALS</span><span class="sep sep-y">X</span><span>DTF + SUBLIMATION</span><span class="sep sep-c">X</span><span>LAMINATED VINYL STICKERS</span><span class="sep sep-m">X</span><span>BANNERS</span><span class="sep sep-y">X</span><span>ECO-SOLVENT</span><span class="sep sep-c">X</span><span>UV CHROME</span><span class="sep sep-m">X</span>
   </div>
 </div>
 
