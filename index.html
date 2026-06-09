@@ -4,25 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>XGRAPHiiiCS — Fine Art &amp; Large Format Print Studio</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%230698D7'/%3E%3Cstop offset='.52' stop-color='%23C10078'/%3E%3Cstop offset='1' stop-color='%23FCE902'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg stroke='url(%23g)' stroke-width='7' stroke-linecap='round'%3E%3Cline x1='24' y1='24' x2='76' y2='76'/%3E%3Cline x1='76' y1='24' x2='24' y2='76'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600&family=Montserrat:wght@200;300;400;500;600&family=Sora:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ===== BRAND DISPLAY FONT: SANTRAL LIGHT (Taner Ardali) =====
-   Drop your licensed Santral Light file into a "fonts/" folder next to this HTML.
-   Any one of these formats works (woff2 is best for web).
-   Until present, the site falls back to Jost (geometric) then Montserrat. */
-@font-face{
-  font-family:'Santral';
-  src:url('fonts/santral-light.woff2') format('woff2'),
-      url('fonts/santral-light.woff')  format('woff'),
-      url('fonts/Santral-Light.otf')   format('opentype'),
-      url('fonts/santral-light.ttf')   format('truetype');
-  font-weight:100 700;
-  font-style:normal;
-  font-display:swap;
-}
+/* ===== DISPLAY FONT: JOST =====
+   Uses Jost (Futura-style geometric) loaded from Google Fonts. */
 :root{
   --ink:#0c0c0e;
   --paper:#ffffff;
@@ -42,7 +29,7 @@ body{font-family:'Sora',sans-serif;background:var(--paper);color:var(--ink);-web
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1280px;margin:0 auto;padding:0 32px}
 .mono{font-family:'Space Mono',monospace}
-.display{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:300;letter-spacing:.01em;line-height:1.04;text-transform:uppercase}
+.display{font-family:'Jost','Montserrat',sans-serif;font-weight:300;letter-spacing:.01em;line-height:1.04;text-transform:uppercase}
 .cmy-text{background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.035;
@@ -54,9 +41,11 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;o
 /* ===== NAV ===== */
 header{position:fixed;top:0;left:0;right:0;z-index:1000;backdrop-filter:blur(12px);background:rgba(255,255,255,.85);border-bottom:1px solid var(--line);transition:transform .4s ease}
 .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
-.logo{display:flex;align-items:baseline;font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:300;font-size:1.4rem;letter-spacing:.2em}
+.logo{display:flex;align-items:baseline;font-family:'Jost','Montserrat',sans-serif;font-weight:300;font-size:1.4rem;letter-spacing:.12em}
 .logo .blk{color:var(--ink)}
-.logo .iii,.foot-logo .iii{background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo .i1{color:var(--cyan)}
+.logo .i2{color:var(--magenta)}
+.logo .i3{color:#e8d400}
 .logo .x{background:linear-gradient(135deg,#0698D7,#C10078 55%,#FCE902);-webkit-background-clip:text;background-clip:text;color:transparent}
 nav ul{display:flex;gap:30px;list-style:none}
 nav a.navlink{font-size:.82rem;font-weight:500;letter-spacing:.02em;position:relative;padding:4px 0;text-transform:uppercase}
@@ -71,8 +60,8 @@ nav a.navlink:hover::after{width:100%}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:50px;align-items:end}
 .tag{font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--magenta);margin-bottom:22px;display:flex;align-items:center;gap:10px}
 .tag::before{content:"";width:40px;height:3px;background:var(--cmy);border-radius:2px}
-.hero h1{font-size:clamp(3rem,8vw,6.6rem);font-family:'Santral','Jost','Montserrat',sans-serif;line-height:.92;letter-spacing:-.03em}
-.hero h1 .out{color:transparent;-webkit-text-stroke:1.4px var(--ink)}
+.hero h1{font-size:clamp(3rem,8vw,6.6rem);font-family:'Jost','Montserrat',sans-serif;line-height:.92;letter-spacing:-.03em}
+.hero h1 .out{color:transparent;-webkit-text-stroke:2px var(--ink)}
 .hero p.lead{margin-top:28px;font-size:1.08rem;max-width:520px;color:var(--muted);font-weight:300;line-height:1.6}
 .hero-cta{margin-top:36px;display:flex;gap:16px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;font-weight:600;font-size:.85rem;letter-spacing:.04em;text-transform:uppercase;border-radius:3px;transition:.3s;border:1.5px solid var(--ink);cursor:pointer}
@@ -81,19 +70,16 @@ nav a.navlink:hover::after{width:100%}
 .btn-fill:hover{border-color:transparent}
 .btn-fill:hover::before{opacity:1}
 .btn-ghost:hover{background:var(--ink);color:#fff}
-<<<<<<< HEAD
 .hero-art{border:1px solid var(--line);border-radius:6px;overflow:hidden;align-self:center}
-=======
-.hero-art{aspect-ratio:3/4;border:1px solid var(--line);position:relative;overflow:hidden;border-radius:6px}
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
+.hero-video{width:100%;height:auto;display:block;border-radius:6px}
 .stat-row{display:flex;gap:46px;margin-top:60px;flex-wrap:wrap}
-.stat .n{font-family:'Santral','Jost','Montserrat',sans-serif;font-size:2.4rem;line-height:1}
+.stat .n{font-family:'Jost','Montserrat',sans-serif;font-size:2.4rem;line-height:1}
 .stat .l{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 
 /* marquee */
 .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;background:var(--ink);color:#fff}
 .marquee-track{display:flex;gap:0;white-space:nowrap;animation:scroll 28s linear infinite;padding:16px 0}
-.marquee-track span{font-family:'Santral','Jost','Montserrat',sans-serif;font-size:1.1rem;letter-spacing:.02em;display:flex;align-items:center;gap:40px;padding-right:40px}
+.marquee-track span{font-family:'Jost','Montserrat',sans-serif;font-size:1.1rem;letter-spacing:.02em;display:flex;align-items:center;gap:40px;padding-right:40px}
 .marquee-track span::after{content:"✕";font-size:.85rem;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
 @keyframes scroll{to{transform:translateX(-50%)}}
 
@@ -101,7 +87,7 @@ nav a.navlink:hover::after{width:100%}
 section{padding:110px 0}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:60px;flex-wrap:wrap}
 .sec-head .idx{font-family:'Space Mono',monospace;font-size:.8rem;letter-spacing:.1em;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
-.sec-head h2{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.02;letter-spacing:.01em;margin-top:12px}
+.sec-head h2{font-family:'Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(2.2rem,5vw,3.8rem);line-height:1.02;letter-spacing:.01em;margin-top:12px}
 .sec-head p{max-width:420px;color:var(--muted);font-weight:300;font-size:.98rem;line-height:1.6}
 
 /* ===== PRODUCTS ===== */
@@ -128,12 +114,11 @@ section{padding:110px 0}
 .serv-list{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.14);border-radius:6px;overflow:hidden;position:relative}
 .serv{background:var(--ink);padding:38px 32px;display:flex;gap:24px;align-items:flex-start;transition:.3s}
 .serv:hover{background:#17171a}
-.serv .num{font-family:'Santral','Jost','Montserrat',sans-serif;font-size:1.6rem;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent;min-width:54px}
+.serv .num{font-family:'Jost','Montserrat',sans-serif;font-size:1.6rem;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent;min-width:54px}
 .serv h3{font-size:1.18rem;font-weight:600}
 .serv p{margin-top:8px;font-size:.9rem;color:rgba(255,255,255,.6);font-weight:300;line-height:1.55}
 
 /* ===== GALLERY ===== */
-<<<<<<< HEAD
 .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:280px;gap:14px}
 .gal-item{overflow:hidden;border-radius:6px;position:relative;cursor:pointer;border:1px solid var(--line);background:var(--ink)}
 .gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
@@ -147,23 +132,6 @@ section{padding:110px 0}
 .prod-img,.about-art{position:relative}
 .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:var(--ink);transition:transform .55s ease}
 .prod:hover .photo{transform:scale(1.06)}
-/* hero video */
-.hero-video{width:100%;height:auto;display:block;border-radius:6px}
-=======
-.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:180px;gap:14px}
-.gal-item{overflow:hidden;border-radius:6px;position:relative;cursor:pointer;border:1px solid var(--line)}
-.gal-item .cap{position:absolute;inset:0;display:flex;align-items:flex-end;padding:18px;background:linear-gradient(transparent 45%,rgba(12,12,14,.82));opacity:0;transition:.35s}
-.gal-item:hover .cap{opacity:1}
-.gal-item .cap span{color:#fff;font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase}
-.gal-item svg{width:100%;height:100%;display:block;transition:.5s}
-.gal-item:hover svg{transform:scale(1.06)}
-.g-tall{grid-row:span 2}
-.g-wide{grid-column:span 2}
-/* real-photo overlay: drop a file into images/ and it covers the SVG illustration; if missing, it's removed and the SVG shows */
-.prod-img,.about-art{position:relative}
-.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;background:var(--ink);transition:transform .55s ease}
-.prod:hover .photo,.gal-item:hover .photo{transform:scale(1.06)}
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 
 /* ===== PROJECTS ===== */
 .proj{display:grid;grid-template-columns:.9fr 1.1fr;gap:0;border:1px solid var(--line);background:var(--paper)}
@@ -172,7 +140,6 @@ section{padding:110px 0}
 .proj:nth-child(even){grid-template-columns:1.1fr .9fr}
 .proj:nth-child(even) .proj-art{order:2}
 .proj+.proj{border-top:none}
-<<<<<<< HEAD
 .proj-art{min-height:380px;position:relative;overflow:hidden;cursor:pointer}
 .proj-art svg{position:absolute;inset:0;width:100%;height:100%}
 .proj-art .proj-hint{position:absolute;bottom:16px;right:16px;z-index:3;background:rgba(12,12,14,.65);color:#fff;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.08em;padding:7px 14px;border-radius:40px;opacity:0;transition:.3s;pointer-events:none;backdrop-filter:blur(6px)}
@@ -196,13 +163,9 @@ section{padding:110px 0}
 .lb-dots{position:fixed;bottom:50px;left:50%;transform:translateX(-50%);display:flex;gap:8px}
 .lb-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:.2s}
 .lb-dots span.active{background:#fff;transform:scale(1.2)}
-=======
-.proj-art{min-height:380px;position:relative;overflow:hidden}
-.proj-art svg{position:absolute;inset:0;width:100%;height:100%}
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 .proj-info{padding:48px;display:flex;flex-direction:column;justify-content:center}
 .proj-info .loc{font-family:'Space Mono',monospace;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
-.proj-info h3{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1.05;margin:16px 0 14px}
+.proj-info h3{font-family:'Jost','Montserrat',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);line-height:1;margin:16px 0 14px}
 .proj-info p{color:var(--muted);font-weight:300;line-height:1.65;max-width:440px}
 .proj-info .meta{display:flex;gap:28px;margin-top:26px;flex-wrap:wrap}
 .proj-info .meta .k{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;display:block}
@@ -211,14 +174,13 @@ section{padding:110px 0}
 /* ===== CLIENTS ===== */
 .clients{text-align:center}
 .client-row{display:flex;justify-content:center;align-items:center;gap:60px;flex-wrap:wrap;margin-top:50px}
-.client-row .c{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:1.5rem;color:var(--ink);opacity:.5;transition:.3s;letter-spacing:.04em;text-transform:uppercase}
-.client-row a.c{cursor:pointer}
+.client-row .c{font-family:'Jost','Montserrat',sans-serif;font-size:1.5rem;color:var(--ink);opacity:.5;transition:.3s;letter-spacing:0;cursor:default}
 .client-row .c:hover{opacity:1;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
 
 /* ===== ABOUT ===== */
 #about{background:var(--paper-2)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.about-grid .big{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.2;letter-spacing:.01em}
+.about-grid .big{font-family:'Jost','Montserrat',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.15;letter-spacing:0}
 .about-text p{color:var(--muted);font-weight:300;line-height:1.75;margin-top:18px;font-size:1rem}
 .tech-strip{margin-top:38px;display:flex;flex-wrap:wrap;gap:10px}
 .tech-strip span{font-family:'Space Mono',monospace;font-size:.72rem;border:1px solid var(--line);padding:8px 14px;border-radius:40px;color:var(--muted);background:var(--paper)}
@@ -229,7 +191,7 @@ section{padding:110px 0}
 #contact::before{content:"";position:absolute;top:-150px;right:-120px;width:480px;height:480px;border-radius:50%;background:var(--cmy-soft);filter:blur(130px);opacity:.22}
 #contact .sec-head h2{color:#fff}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
-.contact-info h3{font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:400;font-size:clamp(2rem,4vw,3rem);line-height:1.1}
+.contact-info h3{font-family:'Jost','Montserrat',sans-serif;font-size:clamp(2rem,4vw,3rem);line-height:1.05}
 .contact-info .row{margin-top:32px}
 .contact-info .row .k{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
 .contact-info .row .v{font-size:1.15rem;margin-top:6px;font-weight:500}
@@ -243,9 +205,10 @@ form button:hover{background-position:right center;transform:translateY(-2px)}
 /* ===== SOCIAL / FOOTER ===== */
 footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.12);padding:70px 0 40px}
 .foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
-.foot-logo{display:flex;align-items:baseline;font-family:'Santral','Jost','Montserrat',sans-serif;font-weight:300;font-size:2.6rem;letter-spacing:.26em}
+.foot-logo{display:flex;align-items:baseline;font-family:'Jost','Montserrat',sans-serif;font-size:2.5rem;letter-spacing:.01em}
 .foot-logo .blk{color:#fff}
 .foot-logo .x{background:linear-gradient(135deg,#0698D7,#C10078 55%,#FCE902);-webkit-background-clip:text;background-clip:text;color:transparent}
+.foot-logo .i1{color:var(--cyan)}.foot-logo .i2{color:var(--magenta)}.foot-logo .i3{color:#e8d400}
 .socials{display:flex;gap:14px;flex-wrap:wrap}
 .soc{display:flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.22);padding:12px 20px;border-radius:40px;transition:.3s;font-size:.82rem;font-weight:500;position:relative;overflow:hidden;z-index:1}
 .soc::before{content:"";position:absolute;inset:0;background:var(--cmy);opacity:0;transition:.3s;z-index:-1}
@@ -260,11 +223,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 @media(max-width:980px){
   .hero-grid{grid-template-columns:1fr}.hero-art{display:none}
   .prod-grid{grid-template-columns:1fr 1fr}.serv-list{grid-template-columns:1fr}
-<<<<<<< HEAD
   .gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:220px}
-=======
-  .gal-grid{grid-template-columns:repeat(2,1fr)}
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
   .proj,.proj:nth-child(even){grid-template-columns:1fr}.proj:nth-child(even) .proj-art{order:0}
   .about-grid,.contact-grid{grid-template-columns:1fr}
 }
@@ -273,11 +232,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   nav ul{display:none}.burger{display:flex}
   nav.open ul{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;background:var(--paper);padding:24px 32px;gap:18px;border-bottom:1px solid var(--line)}
   .prod-grid{grid-template-columns:1fr}
-<<<<<<< HEAD
   .gal-grid{grid-template-columns:1fr;grid-auto-rows:240px}
-=======
-  .gal-grid{grid-template-columns:1fr;grid-auto-rows:200px}
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
   .g-wide,.g-tall{grid-column:auto;grid-row:auto}
   .stat-row{gap:28px}
 }
@@ -289,7 +244,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 <header id="top">
   <div class="wrap">
     <nav id="nav">
-      <a href="#top" class="logo"><span class="x">X</span><span class="blk">GRAPH</span><span class="iii">iii</span><span class="blk">CS</span></a>
+      <a href="#top" class="logo"><span class="x">X</span><span class="blk">GRAPH</span><span class="i1">i</span><span class="i2">i</span><span class="i3">i</span><span class="blk">CS</span></a>
       <ul>
         <li><a class="navlink" href="#top">Home</a></li>
         <li><a class="navlink" href="#products">Products</a></li>
@@ -417,7 +372,6 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
           <div class="meta"><div><span class="k">Scope</span><span class="v">Murals · Canvas</span></div><div><span class="k">Type</span><span class="v">Restaurant</span></div></div>
         </div>
       </div>
-<<<<<<< HEAD
       <div class="proj">
         <div class="proj-art" data-art="pinkys"></div>
         <div class="proj-info">
@@ -426,14 +380,12 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
           <div class="meta"><div><span class="k">Scope</span><span class="v">Murals · Wall Graphics</span></div><div><span class="k">Type</span><span class="v">Restaurant / Hotel</span></div></div>
         </div>
       </div>
-=======
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
     </div>
 
     <div class="clients reveal" style="margin-top:90px">
       <div class="idx mono" style="font-size:.8rem;letter-spacing:.1em;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent">TRUSTED BY</div>
       <div class="client-row">
-        <div class="c">LISA VANDERPUMP</div><div class="c">NICK ALAIN</div><a class="c" href="https://en.wikipedia.org/wiki/Caesars_Entertainment" target="_blank" rel="noopener">Caesars Entertainment</a>
+        <div class="c">LISA VANDERPUMP</div><div class="c">NICK ALAIN</div><div class="c">CAESARS GROUP</div>
       </div>
     </div>
   </div>
@@ -465,11 +417,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
     <div class="contact-grid reveal">
       <div class="contact-info">
         <h3>Have a wall, a space<br>or an idea? <span class="cmy-text">Let's print it.</span></h3>
-<<<<<<< HEAD
         <div class="row"><div class="k">Email</div><div class="v">hello@xgraphiics.com</div></div>
-=======
-        <div class="row"><div class="k">Email</div><div class="v">info@xgraphiics.com</div></div>
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
         <div class="row"><div class="k">Studio</div><div class="v">Serving LA · Miami · Las Vegas</div></div>
         <div class="row"><div class="k">Hours</div><div class="v">Mon–Fri · 9am – 6pm</div></div>
       </div>
@@ -488,7 +436,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   <div class="wrap">
     <div class="foot-top">
       <div>
-        <div class="foot-logo"><span class="x">X</span><span class="blk">GRAPH</span><span class="iii">iii</span><span class="blk">CS</span></div>
+        <div class="foot-logo"><span class="x">X</span><span class="blk">GRAPH</span><span class="i1">i</span><span class="i2">i</span><span class="i3">i</span><span class="blk">CS</span></div>
         <p style="color:rgba(255,255,255,.5);margin-top:14px;max-width:340px;font-weight:300;font-size:.92rem">Fine art &amp; large format print studio. Design + production for hospitality, retail and residential.</p>
       </div>
       <div>
@@ -508,10 +456,9 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   </div>
 </footer>
 
-<<<<<<< HEAD
 <!-- LIGHTBOX -->
 <div id="lb" class="lb" role="dialog" aria-modal="true" aria-label="Project gallery">
-  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-close" id="lbClose" aria-label="Close">&#x2715;</button>
   <button class="lb-arrow lb-prev hidden" id="lbPrev" aria-label="Previous">&#8249;</button>
   <div class="lb-wrap"><img id="lbImg" src="" alt="Project photo"></div>
   <button class="lb-arrow lb-next hidden" id="lbNext" aria-label="Next">&#8250;</button>
@@ -519,8 +466,6 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   <div class="lb-counter" id="lbCounter"></div>
 </div>
 
-=======
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 <script>
 /* ============================================================
    XGRAPHiiiCS — generated SVG illustration library (CMY brand)
@@ -715,27 +660,21 @@ function sceneWolf(u){return svg(u,`<rect width="400" height="400" fill="#161210
  <g filter="url(#sh_${u})"><rect x="40" y="280" width="320" height="60" rx="10" fill="#3a1322"/><rect x="40" y="270" width="320" height="22" rx="10" fill="#4a1a2c"/><rect x="90" y="276" width="44" height="18" rx="9" fill="#5a2238"/><rect x="160" y="276" width="44" height="18" rx="9" fill="#5a2238"/><rect x="230" y="276" width="44" height="18" rx="9" fill="#5a2238"/><rect x="300" y="276" width="44" height="18" rx="9" fill="#5a2238"/></g>
  <ellipse cx="200" cy="372" rx="80" ry="15" fill="#000" opacity=".4"/>`);}
 
-<<<<<<< HEAD
 const SCENES={canvas:sceneCanvas,wallpaper:sceneWallpaper,mural:sceneMural,apparel:sceneApparel,stickers:sceneStickers,banner:sceneBanner,printer:scenePrinter,heatpress:sceneHeatPress,lam:sceneLam,uv:sceneUV,mugs:sceneMugs,suite:sceneSuite,vanderpump:sceneVanderpump,ethereal:sceneEthereal,glimmer:sceneGlimmer,wolf:sceneWolf,pinkys:sceneEthereal};
-=======
-const SCENES={canvas:sceneCanvas,wallpaper:sceneWallpaper,mural:sceneMural,apparel:sceneApparel,stickers:sceneStickers,banner:sceneBanner,printer:scenePrinter,heatpress:sceneHeatPress,lam:sceneLam,uv:sceneUV,mugs:sceneMugs,suite:sceneSuite,vanderpump:sceneVanderpump,ethereal:sceneEthereal,glimmer:sceneGlimmer,wolf:sceneWolf};
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 function render(key){_uid++;return (SCENES[key]||sceneCanvas)('u'+_uid);}
 function photo(file){return file?`<img class="photo" src="images/${file}" alt="" loading="lazy" onerror="this.remove()">`:'';}
 
 /* ---------- WIRING ---------- */
 // Products
-<<<<<<< HEAD
 document.querySelectorAll('.prod-img').forEach(el=>{const k=el.dataset.prod;el.innerHTML=render(k)+photo('product-'+k+'.png');});
 
 // Hero — logo sin fondo
-document.getElementById('heroArt').innerHTML=
-  `<img class="hero-video" src="images/hero-logo.png" alt="XGRAPHiiiCS">`;
+document.getElementById('heroArt').innerHTML=`<img class="hero-video" src="images/hero-logo.png" alt="XGRAPHiiiCS">`;
 
-// About — logo dark version
+// About — logo sin fondo
 document.getElementById('aboutArt').innerHTML=render('printer')+photo('hero-logo.png');
 
-// Project image arrays (cover = first image)
+// Projects — image arrays, click opens lightbox
 const projImages={
   vanderpump:['project-vanderpump-1.jpg'],
   ethereal:  ['project-ethereal-1.webp'],
@@ -743,7 +682,6 @@ const projImages={
   wolf:      ['project-wolf-1.webp','project-wolf-2.webp','project-wolf-3.webp','project-wolf-4.webp','project-wolf-5.webp','project-wolf-6.webp'],
   pinkys:    ['project-pinkys-1.webp','project-pinkys-2.webp','project-pinkys-3.webp','project-pinkys-4.webp']
 };
-
 document.querySelectorAll('.proj-art').forEach(el=>{
   const k=el.dataset.art;
   const imgs=projImages[k]||[];
@@ -763,31 +701,17 @@ const lbClose=document.getElementById('lbClose');
 const lbDots=document.getElementById('lbDots');
 const lbCounter=document.getElementById('lbCounter');
 let lbSlides=[],lbIdx=0;
-
-function lbOpen(imgs,start=0){
-  lbSlides=imgs; lbIdx=start;
-  lbRender();
-  lb.classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function lbClose2(){
-  lb.classList.remove('open');
-  document.body.style.overflow='';
-}
+function lbOpen(imgs,start=0){lbSlides=imgs;lbIdx=start;lbRender();lb.classList.add('open');document.body.style.overflow='hidden';}
+function lbClose2(){lb.classList.remove('open');document.body.style.overflow='';}
 function lbRender(){
   const multi=lbSlides.length>1;
   lbImg.classList.add('fade');
-  setTimeout(()=>{
-    lbImg.src='images/'+lbSlides[lbIdx];
-    lbImg.onload=()=>lbImg.classList.remove('fade');
-  },200);
+  setTimeout(()=>{lbImg.src='images/'+lbSlides[lbIdx];lbImg.onload=()=>lbImg.classList.remove('fade');},200);
   lbPrev.classList.toggle('hidden',!multi);
   lbNext.classList.toggle('hidden',!multi);
   lbCounter.textContent=multi?`${lbIdx+1} / ${lbSlides.length}`:'';
   lbDots.innerHTML=multi?lbSlides.map((_,i)=>`<span class="${i===lbIdx?'active':''}" data-i="${i}"></span>`).join(''):'';
   lbDots.querySelectorAll('span').forEach(s=>s.addEventListener('click',e=>{lbIdx=+e.target.dataset.i;lbRender();}));
-  lbPrev.disabled=lbIdx===0;
-  lbNext.disabled=lbIdx===lbSlides.length-1;
   lbPrev.style.opacity=lbIdx===0?'.35':'1';
   lbNext.style.opacity=lbIdx===lbSlides.length-1?'.35':'1';
 }
@@ -802,7 +726,7 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight'&&lbIdx<lbSlides.length-1){lbIdx++;lbRender();}
 });
 
-// Gallery — real photos only, no SVG fallbacks
+// Gallery — 6 fotos reales, click abre lightbox
 const gal=[
   {cls:'g-wide', img:'gallery-wallpaper.png', cap:'GUEST SUITE // WALLPAPER INSTALL'},
   {cls:'',       img:'gallery-canvas.png',    cap:'CANVAS FINE ART'},
@@ -820,33 +744,6 @@ document.getElementById('galGrid').innerHTML=gal.map((g,i)=>`
 document.querySelectorAll('.gal-item').forEach(el=>{
   el.addEventListener('click',()=>lbOpen(galImgs,+el.dataset.gal));
 });
-=======
-document.querySelectorAll('.prod-img').forEach(el=>{const k=el.dataset.prod;el.innerHTML=render(k)+photo('product-'+k+'.jpg');});
-
-// Hero + About
-document.getElementById('heroArt').innerHTML=render('canvas')+photo('hero.jpg');
-document.getElementById('aboutArt').innerHTML=render('printer')+photo('studio.jpg');
-
-// Projects
-const projFile={vanderpump:'project-vanderpump-hotel.jpg',ethereal:'project-ethereal.jpg',glimmer:'project-glimmer-cafe.jpg',wolf:'project-wolf.jpg'};
-document.querySelectorAll('.proj-art').forEach(el=>{const k=el.dataset.art;el.innerHTML=render(k)+photo(projFile[k]);});
-
-// Gallery
-const gal=[
- {cls:'g-wide',  key:'suite',    cap:'GUEST SUITE // WALLPAPER INSTALL', img:'gallery-1.jpg'},
- {cls:'',        key:'canvas',   cap:'CANVAS FINE ART',                 img:'gallery-2.jpg'},
- {cls:'g-tall',  key:'printer',  cap:'WIDE-FORMAT PRINTING',            img:'gallery-3.jpg'},
- {cls:'',        key:'uv',       cap:'UV CHROME EFFECT',                img:'gallery-4.jpg'},
- {cls:'',        key:'lam',      cap:'LAMINATION',                      img:'gallery-5.jpg'},
- {cls:'g-wide',  key:'mural',    cap:'RESTAURANT MURAL',                img:'gallery-6.jpg'},
- {cls:'',        key:'apparel',  cap:'DTF APPAREL',                     img:'gallery-7.jpg'},
- {cls:'',        key:'mugs',     cap:'SUBLIMATION MUGS',                img:'gallery-8.jpg'},
- {cls:'g-tall',  key:'heatpress',cap:'OPERATOR // HEAT PRESS',          img:'gallery-9.jpg'},
- {cls:'',        key:'stickers', cap:'VINYL STICKERS',                  img:'gallery-10.jpg'},
- {cls:'',        key:'banner',   cap:'BANNER PRODUCTION',               img:'gallery-11.jpg'}
-];
-document.getElementById('galGrid').innerHTML=gal.map(g=>`<div class="gal-item ${g.cls}">${render(g.key)}${photo(g.img)}<div class="cap"><span>${g.cap}</span></div></div>`).join('');
->>>>>>> c62e42f69f814498390398f649fc01f29ba0900f
 
 // Nav + scroll + reveal
 const burger=document.getElementById('burger'),nav=document.getElementById('nav');
