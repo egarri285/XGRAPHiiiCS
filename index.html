@@ -434,10 +434,10 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
         <div class="row"><div class="k">Hours</div><div class="v">Mon&ndash;Fri &middot; 9am &ndash; 6pm</div></div>
       </div>
       <form action="https://formspree.io/f/xjgdrlvj" method="POST">
-        <input type="text" placeholder="Name" required>
-        <input type="email" placeholder="Email" required>
-        <input type="text" placeholder="Project type (mural, wallpaper, apparel&hellip;)">
-        <textarea rows="4" placeholder="Tell us about your project"></textarea>
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="project_type" placeholder="Project type (mural, wallpaper, apparel&hellip;)">
+        <textarea rows="4" name="message" placeholder="Tell us about your project"></textarea>
         <button type="submit">Send Inquiry</button>
       </form>
     </div>
