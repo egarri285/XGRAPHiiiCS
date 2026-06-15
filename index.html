@@ -265,13 +265,14 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   .stat-row{gap:28px}
 }
 
+
 /* ===== QUOTE CALCULATOR ===== */
 #quote{background:var(--paper);padding:100px 0 80px}
 #quote .sec-head h2{color:var(--ink)}
 #quote .qc-sub{font-size:.9rem;color:var(--muted);margin-top:-40px;margin-bottom:50px}
 #quote .qc-grid{display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:start}
 #quote .qc-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px}
-#quote .qc-panel h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:700}
+#quote .qc-panel>h2{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-weight:700}
 #quote .qc-prods{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
 #quote .qc-prod{display:flex;align-items:center;gap:11px;padding:13px 14px;border:1.5px solid var(--line);border-radius:13px;cursor:pointer;background:#fff;transition:border-color .18s,background .18s,transform .1s;text-align:left;width:100%}
 #quote .qc-prod:hover{border-color:#cfcec8}
@@ -341,6 +342,11 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 #quote .li.tax .v{color:var(--yellow)}
 #quote .qc-disc{font-size:11px;color:var(--muted);margin-top:18px;line-height:1.5}
 @media(max-width:820px){#quote .qc-grid{grid-template-columns:1fr}#quote .qc-summary{position:static}#quote .qc-prods{grid-template-columns:1fr}}
+
+/* competitor price */
+#quote .qc-comp-wrap{display:flex;align-items:center;gap:10px;margin-top:6px;justify-content:flex-end}
+#quote .qc-comp-val{font-size:20px;font-weight:700;color:#ff4d4d;text-decoration:line-through;opacity:.85}
+#quote .qc-comp-label{font-size:10px;color:#9a9aa4;line-height:1.3;max-width:80px;text-align:right}
 </style>
 </head>
 <body>
@@ -515,13 +521,13 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   </div>
 </section>
 
+
 <!-- ===== QUOTE CALCULATOR ===== -->
 <section id="quote">
   <div class="wrap">
     <div class="sec-head"><h2>Get a Quote</h2></div>
     <p class="qc-sub">Instant pricing. Volume discounts apply automatically as your order grows.</p>
     <div class="qc-grid">
-      <!-- LEFT: controls -->
       <div class="qc-panel">
         <h2>1 · Choose your product</h2>
         <div class="qc-prods" id="qc-prods"></div>
@@ -535,7 +541,6 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
         </div>
         <p class="qc-note" id="qc-prodNote"></p>
       </div>
-      <!-- RIGHT: summary -->
       <div class="qc-summary">
         <div class="sumcard">
           <div class="lbl">Your quote</div>
@@ -546,6 +551,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
             <span class="tv"><span class="cmy" id="qc-grand">$0</span></span>
           </div>
           <div class="qc-perunit" id="qc-perunit"></div>
+          <div class="qc-comp-wrap"><span class="qc-comp-label">avg. competitor<br>market rate</span><span class="qc-comp-val" id="qc-compVal"></span></div>
           <div class="tax-row" id="qc-taxRow" onclick="qcToggleTax()">
             <div class="tt">Apply sales tax (7%)
               <small>Companies with Tax ID: turn this off</small>
@@ -928,32 +934,70 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 
+
+
 /* ===== QUOTE CALCULATOR JS ===== */
 (function(){
-  const FENCE_HEIGHT = 5;
-  const STRETCH_BAR_RATE = 0.35;
-  const MOUNT_FEE_PER_PIECE = 12.00;
+  const FENCE_HEIGHT=5;
+  const STRETCH_BAR_RATE=0.35;
+  const MOUNT_FEE_PER_PIECE=12.00;
 
   const QC_PRODUCTS = {
-    wallpaper:{name:"Wallpaper / Murals",unit:"sq ft",icon:'<rect x="2" y="2" width="26" height="26" rx="3" fill="#fff" stroke="#0698D7" stroke-width="2"/><circle cx="9" cy="9" r="2.2" fill="#0698D7"/><circle cx="20" cy="15" r="2.2" fill="#C10078"/><circle cx="13" cy="22" r="2.2" fill="#FCE902" stroke="#c9b400"/>',mode:"area",base:9.00,thresholds:[100,500,2000],install:{label:"Professional installation",steps:[{max:100,rate:5.0},{max:500,rate:4.25},{max:null,rate:3.5}]},note:"Base price for standard vinyl. Metallic/iridescent UV finishes and certified Type II are quoted at the high end."},
-    fence:{name:"Construction Fence Wrap",unit:"linear ft",icon:'<path d="M4 7h22v16H4z" fill="#fff" stroke="#C10078" stroke-width="2"/><path d="M8 12h14M8 16h10" stroke="#C10078" stroke-width="2"/><path d="M2 5h2v20H2zM26 5h2v20h-2z" fill="#0E0E12"/>',mode:"linear",base:3.60,thresholds:[100,500,1500],install:{label:"Installation + site survey",steps:[{max:100,rate:3.0},{max:500,rate:2.25},{max:null,rate:1.5}]},note:"Measured by linear foot at a fixed 5' height. Free site survey upon order confirmation."},
-    window:{name:"Window Vinyl",unit:"sq ft",icon:'<rect x="4" y="4" width="22" height="22" rx="2" fill="#eaf6fc" stroke="#0698D7" stroke-width="2"/><path d="M15 4v22M4 15h22" stroke="#0698D7" stroke-width="1.2" opacity=".5"/>',mode:"area",base:6.30,thresholds:[50,200,600],install:{label:"Professional installation",steps:[{max:50,rate:4.0},{max:200,rate:3.25},{max:null,rate:2.5}]},note:"Perforated vinyl 70/30, opaque or frosted. Optional UV laminate for exterior (+$1/sq ft)."},
-    canvas:{name:"Canvas",unit:"sq ft",units:"in",icon:'<rect x="3" y="3" width="24" height="24" rx="2" fill="#fff" stroke="#C10078" stroke-width="2"/><path d="M7 19l5-6 4 4 3-3 4 4" stroke="#C10078" stroke-width="1.6" fill="none"/><circle cx="11" cy="11" r="1.6" fill="#FCE902" stroke="#c9b400"/>',mode:"area",base:8.00,rollBase:8.00,thresholds:[null,null,null],qtyTiers:true,install:null,note:"Fine art canvas print. Stretcher bars include frame assembly by perimeter. Roll only: print on canvas media for client to frame."},
-    shirt:{name:"T-Shirts (DTF)",unit:"shirt",icon:'<path d="M10 5L5 9l3 3 2-1.5V25h12V10.5L24 12l3-3-5-4-3 2h-6z" fill="#fff" stroke="#b8a800" stroke-width="2" stroke-linejoin="round"/><circle cx="15" cy="16" r="3" fill="#FCE902" stroke="#b8a800"/>',mode:"qty",thresholds:[12,50,100],install:null,hasGarmentToggle:true,fixedTable:true,table:{printOnly:[10,9,8,7],full:[22,19,16,13]},note:"Choose whether you bring your own garment (print only) or we supply it (full package)."},
-    yard:{name:"Political Yard Signs",unit:"unit",icon:'<rect x="6" y="4" width="18" height="12" rx="1.5" fill="#fffde0" stroke="#b8a800" stroke-width="2"/><path d="M10 8h10M10 11h7" stroke="#b8a800" stroke-width="1.6"/><path d="M11 16v9M19 16v9" stroke="#0E0E12" stroke-width="1.6"/>',mode:"qty",base:9.00,thresholds:[50,100,500],minQty:25,install:null,note:"4mm coroplast double-sided + wire stake. Bilingual design included from 50 units."}
+  wallpaper:{
+    name:"Wallpaper / Murals", unit:"sq ft", icon:'<rect x="2" y="2" width="26" height="26" rx="3" fill="#fff" stroke="#0698D7" stroke-width="2"/><circle cx="9" cy="9" r="2.2" fill="#0698D7"/><circle cx="20" cy="15" r="2.2" fill="#C10078"/><circle cx="13" cy="22" r="2.2" fill="#FCE902" stroke="#c9b400"/>',
+    mode:"area", base:9.00, thresholds:[100,500,2000],
+    install:{label:"Professional installation",
+      steps:[{max:100,rate:5.0},{max:500,rate:4.25},{max:null,rate:3.5}]},
+    note:"Base price for standard vinyl. Metallic/iridescent UV finishes and certified Type II (Class A / NFPA) are quoted at the high end of the range."
+  },
+  fence:{
+    name:"Construction Fence Wrap", unit:"linear ft", icon:'<path d="M4 7h22v16H4z" fill="#fff" stroke="#C10078" stroke-width="2"/><path d="M8 12h14M8 16h10" stroke="#C10078" stroke-width="2"/><path d="M2 5h2v20H2zM26 5h2v20h-2z" fill="#0E0E12"/>',
+    mode:"linear", base:3.60, thresholds:[100,500,1500],
+    install:{label:"Installation + site survey",
+      steps:[{max:100,rate:3.0},{max:500,rate:2.25},{max:null,rate:1.5}]},
+    note:"Measured by linear foot of fence at a fixed 5' height. Area = linear ft × 5. Free site survey upon order confirmation."
+  },
+  window:{
+    name:"Window Vinyl", unit:"sq ft", icon:'<rect x="4" y="4" width="22" height="22" rx="2" fill="#eaf6fc" stroke="#0698D7" stroke-width="2"/><path d="M15 4v22M4 15h22" stroke="#0698D7" stroke-width="1.2" opacity=".5"/>',
+    mode:"area", base:6.30, thresholds:[50,200,600],
+    install:{label:"Professional installation",
+      steps:[{max:50,rate:4.0},{max:200,rate:3.25},{max:null,rate:2.5}]},
+    note:"Perforated vinyl 70/30, opaque or frosted. Optional UV laminate for exterior (+$1/sq ft)."
+  },
+  canvas:{
+    name:"Canvas", unit:"sq ft", units:"in", icon:'<rect x="3" y="3" width="24" height="24" rx="2" fill="#fff" stroke="#C10078" stroke-width="2"/><path d="M7 19l5-6 4 4 3-3 4 4" stroke="#C10078" stroke-width="1.6" fill="none"/><circle cx="11" cy="11" r="1.6" fill="#FCE902" stroke="#c9b400"/>',
+    mode:"area", base:8.00, rollBase:8.00, thresholds:[null,null,null], qtyTiers:true,
+    // discount by NUMBER OF PIECES; dimensions in inches; two presentation options
+    install:null,
+    note:"Fine art canvas print. Stretcher bars: print ($8/sq ft) + frame assembly calculated by perimeter — all itemized in the summary. Roll only: print on canvas media ($8/sq ft), for the client to frame or mount. Quantity discounts apply."
+  },
+  shirt:{
+    name:"T-Shirts (DTF)", unit:"shirt", icon:'<path d="M10 5L5 9l3 3 2-1.5V25h12V10.5L24 12l3-3-5-4-3 2h-6z" fill="#fff" stroke="#b8a800" stroke-width="2" stroke-linejoin="round"/><circle cx="15" cy="16" r="3" fill="#FCE902" stroke="#b8a800"/>',
+    mode:"qty", thresholds:[12,50,100],
+    install:null, hasGarmentToggle:true, fixedTable:true,
+    // fixed price table per tier
+    table:{ printOnly:[10,9,8,7], full:[22,19,16,13] },
+    note:"Choose whether you bring your own garment (print only) or we supply it (full package)."
+  },
+  yard:{
+    name:"Political Yard Signs", unit:"unit", icon:'<rect x="6" y="4" width="18" height="12" rx="1.5" fill="#fffde0" stroke="#b8a800" stroke-width="2"/><path d="M10 8h10M10 11h7" stroke="#b8a800" stroke-width="1.6"/><path d="M11 16v9M19 16v9" stroke="#0E0E12" stroke-width="1.6"/>',
+    mode:"qty", base:9.00, thresholds:[50,100,500], minQty:25,
+    install:null,
+    note:"4mm coroplast double-sided + wire stake. Bilingual design included from 50 units. Local delivery and 24–48 h reorders."
+  }
   };
 
   function qcTierDiscount(metric,t){ if(metric>=t[2])return 0.30; if(metric>=t[1])return 0.20; if(metric>=t[0])return 0.10; return 0; }
   function qcInstallRate(sqft,steps){ for(const s of steps){ if(s.max===null||sqft<=s.max)return s.rate; } return steps[steps.length-1].rate; }
-  function qcCanvasDisc(q){ if(q>=10)return .20; if(q>=3)return .10; return 0; }
+  function qcCanvasDisc(q){ if(q>=10) return .20; if(q>=3) return .10; return 0; }
   function qcTierIndex(metric,t){ if(metric>=t[2])return 3; if(metric>=t[1])return 2; if(metric>=t[0])return 1; return 0; }
   function qcMoney(n){ return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
   function qcMoney0(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
 
-  let qcState={ prod:"wallpaper",width:10,height:8,winch:24,hinch:36,linear:50,qty:100,install:false,garment:"printOnly",canvasType:"mounted",taxEnabled:true };
+  let qcState={ prod:"wallpaper",width:10,height:8,winch:24,hinch:36,linear:50,qty:1,install:false,garment:"printOnly",canvasType:"mounted",taxEnabled:true };
 
   const prodsEl=document.getElementById('qc-prods');
-  if(!prodsEl) return; // bail if section not present
+  if(!prodsEl) return;
 
   Object.entries(QC_PRODUCTS).forEach(([key,p])=>{
     const b=document.createElement('button');
@@ -989,7 +1033,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     if(p.hasGarmentToggle) document.querySelectorAll('#qc-seg button').forEach(btn=>btn.onclick=()=>{ qcState.garment=btn.dataset.g; document.querySelectorAll('#qc-seg button').forEach(x=>x.classList.toggle('on',x===btn)); qcRecalc(); });
     if(p.units==='in') document.querySelectorAll('#qc-segCanvas button').forEach(btn=>btn.onclick=()=>{ qcState.canvasType=btn.dataset.ct; document.querySelectorAll('#qc-segCanvas button').forEach(x=>x.classList.toggle('on',x===btn)); qcRecalc(); });
 
-    const sw=document.getElementById('qc-installSwitch'), sub=document.getElementById('qc-installSub');
+    const sw=document.getElementById('qc-installSwitch'),sub=document.getElementById('qc-installSub');
     if(p.install){ sw.style.display=''; sw.classList.remove('disabled'); sub.textContent=p.install.label; sw.classList.toggle('on',qcState.install); sw.onclick=()=>{ qcState.install=!qcState.install; sw.classList.toggle('on',qcState.install); qcRecalc(); }; }
     else { sw.style.display='none'; sw.classList.add('disabled'); sw.classList.remove('on'); sw.onclick=null; }
     document.getElementById('qc-prodNote').textContent=p.note;
@@ -1013,13 +1057,13 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       }
     } else if(p.mode==='linear'){
       const lin=Math.max(0,qcState.linear); sqft=lin*FENCE_HEIGHT; metric=sqft; qty=sqft; baseUnit=p.base;
-      disc=qcTierDiscount(metric,p.thresholds); items.push(['Fence length',`${lin.toLocaleString('en-US')} linear ft`]); items.push(['Area (×5\')',`${sqft.toLocaleString('en-US')} sq ft`]);
+      disc=qcTierDiscount(metric,p.thresholds); items.push(['Fence length',`${lin.toLocaleString('en-US')} linear ft`]); items.push(['Area (×${FENCE_HEIGHT}\')',`${sqft.toLocaleString('en-US')} sq ft`]);
     } else if(p.mode==='qty'){
       qty=Math.max(0,qcState.qty); metric=qty;
       if(p.fixedTable){ const ti=qcTierIndex(qty,p.thresholds),baseTi0=p.table[qcState.garment][0],unitNow=p.table[qcState.garment][ti]; baseUnit=baseTi0; disc=baseTi0>0?(1-unitNow/baseTi0):0; items.push(['Quantity',`${qty.toLocaleString('en-US')} ${p.unit}${qty!==1?'s':''}`]); items.push(['Option',qcState.garment==='full'?'Garment + print':'Print only']); }
       else { baseUnit=p.base; disc=qcTierDiscount(metric,p.thresholds); items.push(['Quantity',`${qty.toLocaleString('en-US')} ${p.unit}${qty!==1?'s':''}`]); }
     }
-    const unitAfter=baseUnit*(1-disc), productSubtotal=unitAfter*qty;
+    const unitAfter=baseUnit*(1-disc),productSubtotal=unitAfter*qty;
     let html='';
     items.forEach(([k,v])=>{ html+=`<div class="li muted"><span>${k}</span><span class="v">${v}</span></div>`; });
     const bUnitSuffix=p.mode==='qty'?`/${p.unit}`:'/sq ft';
@@ -1037,6 +1081,12 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     const displayName=qcState.prod==='canvas'?(qcState.canvasType==='mounted'?'Canvas · Stretcher Bars':'Canvas · Roll Print'):p.name;
     document.getElementById('qc-sumName').textContent=displayName;
     document.getElementById('qc-grand').textContent=qcMoney0(grand);
+    // Competitor price: higher based on volume tier (more you order, more you save vs competition)
+    const compMultiplier = disc>=0.30 ? 1.45 : disc>=0.20 ? 1.35 : disc>=0.10 ? 1.25 : 1.12;
+    const compPrice = grand * compMultiplier;
+    const compEl = document.getElementById('qc-compVal');
+    if(compEl && grand > 0) compEl.textContent = qcMoney0(compPrice);
+    else if(compEl) compEl.textContent = '';
     let pu='';
     if(qty>0){ if(p.mode==='qty') pu=`${qcMoney(grand/qty)} per ${p.unit}`; else if(qcState.prod==='canvas') pu=`${qcMoney(grand/canvasPieces)} per piece`; else pu=`${qcMoney(unitAfter)}/sq ft production`; }
     document.getElementById('qc-perunit').textContent=pu;
@@ -1059,13 +1109,11 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   window.qcSendQuote=function(){
     const p=QC_PRODUCTS[qcState.prod];
     const grand=document.getElementById('qc-grand').textContent;
-    // Pre-fill the contact form message and scroll to it
     const msgField=document.querySelector('#contact textarea,#contact [name="message"],#contact [name="Message"]');
     if(msgField){ msgField.value=`Hi! I used the quote calculator and got an estimate of ${grand} for ${p.name}. Can you confirm this quote?`; }
     document.getElementById('contact').scrollIntoView({behavior:'smooth'});
   };
 
-  // init
   qcRenderDynamic(); qcRecalc();
   document.getElementById('qc-taxRow').classList.toggle('on', qcState.taxEnabled);
 })();
