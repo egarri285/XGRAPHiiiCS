@@ -1141,8 +1141,48 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   window.qcSendQuote=function(){
     const p=QC_PRODUCTS[qcState.prod];
     const grand=document.getElementById('qc-grand').textContent;
+    const comp=document.getElementById('qc-compTotal').textContent;
+
+    // Build product-specific detail lines
+    let details='';
+    if(qcState.prod==='wallpaper'){
+      const grade=qcState.wallpaperGrade==='hotel'?'Type II · Hotel Grade':'Standard Vinyl';
+      const area=(qcState.width*qcState.height).toFixed(1);
+      details=`Material: ${grade}\nDimensions: ${qcState.width} ft × ${qcState.height} ft\nTotal area: ${area} sq ft`;
+    } else if(qcState.prod==='fence'){
+      const area=(qcState.linear*5).toFixed(0);
+      details=`Fence length: ${qcState.linear} linear ft\nTotal area (×5' height): ${area} sq ft`;
+    } else if(qcState.prod==='window'){
+      const area=(qcState.width*qcState.height).toFixed(1);
+      details=`Dimensions: ${qcState.width} ft × ${qcState.height} ft\nTotal area: ${area} sq ft`;
+    } else if(qcState.prod==='canvas'){
+      const type=qcState.canvasType==='mounted'?'Mounted on stretcher bars':'Print on roll only';
+      const sqft=((qcState.winch*qcState.hinch)/144).toFixed(2);
+      details=`Presentation: ${type}\nPiece size: ${qcState.winch}" × ${qcState.hinch}"\nArea per piece: ${sqft} sq ft\nQuantity: ${qcState.qty} piece${qcState.qty!==1?'s':''}`;
+    } else if(qcState.prod==='shirt'){
+      const opt=qcState.garment==='full'?'Garment + print':'Customer brings garment (print only)';
+      details=`Quantity: ${qcState.qty} shirts\nOption: ${opt}`;
+    } else if(qcState.prod==='yard'){
+      details=`Quantity: ${qcState.qty} signs`;
+    }
+
+    const install=qcState.install?'Yes':'No';
+    const tax=qcState.taxEnabled?'Yes (7%)':'No';
+    const installLine=p.install?`\nInstallation: ${install}`:'';
+
+    const msg=`Hi! I used the quote calculator and I'm interested in the following:
+
+PRODUCT: ${p.name}
+${details}${installLine}
+Sales tax: ${tax}
+
+ESTIMATED TOTAL: ${grand}
+Avg. competitor price: ${comp}
+
+Please confirm this quote. Thank you!`;
+
     const msgField=document.querySelector('#contact textarea,#contact [name="message"],#contact [name="Message"]');
-    if(msgField){ msgField.value=`Hi! I used the quote calculator and got an estimate of ${grand} for ${p.name}. Can you confirm this quote?`; }
+    if(msgField){ msgField.value=msg; }
     document.getElementById('contact').scrollIntoView({behavior:'smooth'});
   };
 
