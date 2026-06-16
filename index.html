@@ -1014,7 +1014,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
   function qcMoney(n){ return '$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
   function qcMoney0(n){ return '$'+Math.round(n).toLocaleString('en-US'); }
 
-  let qcState={ prod:"wallpaper",width:10,height:8,winch:24,hinch:36,linear:50,qty:1,install:false,garment:"printOnly",canvasType:"mounted",wallpaperGrade:"standard",taxEnabled:true };
+  let qcState={ prod:"wallpaper",width:0,height:0,winch:0,hinch:0,linear:0,qty:0,install:false,garment:"printOnly",canvasType:"mounted",wallpaperGrade:"standard",taxEnabled:true };
 
   const prodsEl=document.getElementById('qc-prods');
   if(!prodsEl) return;
@@ -1035,18 +1035,18 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     let html='';
     if(p.mode==='area'){
       if(p.units==='in'){
-        html=`<div class="qc-field"><label>Presentation</label><div class="qc-seg" id="qc-segCanvas"><button data-ct="mounted" class="${qcState.canvasType==='mounted'?'on':''}">Mounted on stretcher bars</button><button data-ct="roll" class="${qcState.canvasType==='roll'?'on':''}">Print on roll only</button></div></div><div class="qc-field"><label>Piece dimensions <span class="hint">width × height in inches</span></label><div class="qc-row2"><div class="qc-unitwrap"><input type="number" id="qc-wi" min="0" step="1" value="${qcState.winch}"><span class="u">width in</span></div><div class="qc-unitwrap"><input type="number" id="qc-hi" min="0" step="1" value="${qcState.hinch}"><span class="u">height in</span></div></div></div><div class="qc-field"><label>Number of pieces <span class="hint">−10% from 3, −20% from 10</span></label><div class="qc-unitwrap"><input type="number" id="qc-qty" min="1" step="1" value="${qcState.qty}"><span class="u">pcs</span></div></div>`;
+        html=`<div class="qc-field"><label>Presentation</label><div class="qc-seg" id="qc-segCanvas"><button data-ct="mounted" class="${qcState.canvasType==='mounted'?'on':''}">Mounted on stretcher bars</button><button data-ct="roll" class="${qcState.canvasType==='roll'?'on':''}">Print on roll only</button></div></div><div class="qc-field"><label>Piece dimensions <span class="hint">width × height in inches</span></label><div class="qc-row2"><div class="qc-unitwrap"><input type="number" id="qc-wi" min="0" step="1" value="${qcState.winch||''}"><span class="u">width in</span></div><div class="qc-unitwrap"><input type="number" id="qc-hi" min="0" step="1" value="${qcState.hinch||''}"><span class="u">height in</span></div></div></div><div class="qc-field"><label>Number of pieces <span class="hint">−10% from 3, −20% from 10</span></label><div class="qc-unitwrap"><input type="number" id="qc-qty" min="1" step="1" value="${qcState.qty||''}"><span class="u">pcs</span></div></div>`;
       } else {
         if(qcState.prod==='wallpaper'){
           html=`<div class="qc-field"><label>Material</label><div class="qc-seg" id="qc-segWP"><button data-wg="standard" class="${qcState.wallpaperGrade==='standard'?'on':''}">Standard Vinyl</button><button data-wg="hotel" class="${qcState.wallpaperGrade==='hotel'?'on':''}">Type II · Hotel Grade</button></div></div>`;
         }
-        html+=`<div class="qc-field"><label>Dimensions <span class="hint">width × height in ft</span></label><div class="qc-row2"><div class="qc-unitwrap"><input type="number" id="qc-w" min="0" step="0.5" value="${qcState.width}"><span class="u">width ft</span></div><div class="qc-unitwrap"><input type="number" id="qc-h" min="0" step="0.5" value="${qcState.height}"><span class="u">height ft</span></div></div></div>`;
+        html+=`<div class="qc-field"><label>Dimensions <span class="hint">width × height in ft</span></label><div class="qc-row2"><div class="qc-unitwrap"><input type="number" id="qc-w" min="0" step="0.5" value="${qcState.width||''}"><span class="u">width ft</span></div><div class="qc-unitwrap"><input type="number" id="qc-h" min="0" step="0.5" value="${qcState.height||''}"><span class="u">height ft</span></div></div></div>`;
       }
     } else if(p.mode==='linear'){
-      html=`<div class="qc-field"><label>Fence length <span class="hint">fixed height of ${FENCE_HEIGHT}'</span></label><div class="qc-unitwrap"><input type="number" id="qc-lin" min="0" step="1" value="${qcState.linear}"><span class="u">linear ft</span></div></div>`;
+      html=`<div class="qc-field"><label>Fence length <span class="hint">fixed height of ${FENCE_HEIGHT}'</span></label><div class="qc-unitwrap"><input type="number" id="qc-lin" min="0" step="1" value="${qcState.linear||''}"><span class="u">linear ft</span></div></div>`;
     } else if(p.mode==='qty'){
       const minq=p.minQty||1;
-      html=`<div class="qc-field"><label>Quantity</label><div class="qc-unitwrap"><input type="number" id="qc-qty" min="${minq}" step="1" value="${qcState.qty}"><span class="u">${p.unit}s</span></div></div>`;
+      html=`<div class="qc-field"><label>Quantity</label><div class="qc-unitwrap"><input type="number" id="qc-qty" min="${minq}" step="1" value="${qcState.qty||''}"><span class="u">${p.unit}s</span></div></div>`;
       if(p.hasGarmentToggle) html+=`<div class="qc-field"><label>Option</label><div class="qc-seg" id="qc-seg"><button data-g="printOnly" class="${qcState.garment==='printOnly'?'on':''}">Customer brings garment</button><button data-g="full" class="${qcState.garment==='full'?'on':''}">Garment + print</button></div></div>`;
     }
     qcDyn.innerHTML=html;
