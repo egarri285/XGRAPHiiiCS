@@ -349,9 +349,9 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 
 /* ===== SLOGAN ANIMATOR ===== */
 #slogan-h1{overflow:hidden;position:relative;min-height:3.2em}
-#slogan-stage{position:absolute;top:0;left:0;width:100%;will-change:transform}
-.slogan-ln{display:block;line-height:1.04;will-change:clip-path}
-.slogan-ln .cmy-text{background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent}
+#slogan-stage{position:absolute;top:0;left:0;width:100%;will-change:transform;font-size:0.78em}
+.slogan-ln{display:block;line-height:1.12;padding-bottom:10px}
+.slogan-ln .cmy-text{background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:400}
 </style>
 </head>
 <body>
@@ -1159,7 +1159,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     ['EVERY',       'SURFACE IS',   '<span class="cmy-text">A STATEMENT.</span>'],
     ['WE PRINT',    'WHAT YOU',     '<span class="cmy-text">IMAGINE.</span>'],
     ['YOUR SPACE.', 'YOUR STORY.',  '<span class="cmy-text">PRINTED.</span>'],
-    ['PRINT',       'ANYTHING.',    '<span class="cmy-text">CHANGE EVERYTHING.</span>']
+    ['PRINT',       'ANYTHING.',    'CHANGE', '<span class="cmy-text">EVERYTHING.</span>']
   ];
 
   let si = 0, timer = null;
@@ -1172,7 +1172,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     // Measure 3-line height using a hidden off-screen clone
     // (stage is position:absolute so measuring it won't shift anything)
     stage.innerHTML = '';
-    SLOGANS[0].forEach(html => {
+    // Measure with 4 lines (the max) so h1 is tall enough for any slogan
+    ['A','A','A','A'].forEach(html => {
       const d = document.createElement('div');
       d.className = 'slogan-ln';
       d.innerHTML = html;
@@ -1182,7 +1183,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     requestAnimationFrame(() => {
       // Lock h1 to exact measured height — set ONCE, never touched again
       const measured = stage.offsetHeight;
-      if (measured > 0) h1.style.height = measured + 'px';
+      if (measured > 0) h1.style.height = (measured + 20) + 'px';
       stage.innerHTML = '';
       runSlogan();
     });
@@ -1218,6 +1219,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
       setTimeout(() => {
         el.style.transition = `clip-path ${PRINT_MS}ms linear`;
         el.style.clipPath   = 'inset(0 0 0 0)';
+        // Remove clip entirely after animation — prevents any letter bottom clipping
+        setTimeout(() => { el.style.clipPath = 'none'; }, PRINT_MS + 30);
       }, delay);
     });
 
