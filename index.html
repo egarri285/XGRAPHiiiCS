@@ -1292,7 +1292,7 @@ Please confirm this quote. Thank you!`;
 #wa-body{padding:16px 18px}
 #wa-body p{font-size:.85rem;color:#444;line-height:1.55;margin:0 0 14px}
 #wa-input-wrap{display:flex;gap:8px;align-items:center}
-#wa-input{flex:1;border:1px solid #e0e0e0;border-radius:24px;padding:9px 14px;font-size:16px;outline:none;font-family:inherit;resize:none;-webkit-appearance:none;touch-action:manipulation}
+#wa-input{flex:1;border:1px solid #e0e0e0;border-radius:24px;padding:9px 14px;font-size:16px;outline:none;font-family:inherit;resize:none;-webkit-appearance:none}
 #wa-input:focus{border-color:#C10078}
 #wa-send{background:linear-gradient(135deg,#0698D7,#C10078);border:none;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:.2s}
 #wa-send:hover{filter:brightness(1.15)}
@@ -1341,24 +1341,23 @@ Please confirm this quote. Thank you!`;
 
   let inactivityTimer = null;
   let userClosed = false;
-
-  // Add fade transition via JS so CSS display:none still works as base
-  box.style.transition = 'opacity 3s ease, transform 3s ease';
+  let scrolling = false, scrollTimer = null;
 
   function showBox(){
     if(userClosed) return;
     box.style.display = 'flex';
-    box.style.transition = 'opacity 3s ease, transform 3s ease';
-    requestAnimationFrame(()=>{ box.style.opacity='1'; box.style.transform='translateY(0)'; });
-    setTimeout(()=>input.focus(), 300);
-
+    requestAnimationFrame(()=>{
+      box.style.transition = 'opacity 3s ease, transform 3s ease';
+      box.style.opacity = '1';
+      box.style.transform = 'translateY(0)';
+    });
   }
 
   function hideBox(){
-    box.style.transition='none';
-    box.style.opacity='0';
-    box.style.transform='translateY(10px)';
-    box.style.display='none';
+    box.style.transition = 'none';
+    box.style.opacity = '0';
+    box.style.transform = 'translateY(10px)';
+    box.style.display = 'none';
     scheduleReappear();
   }
 
@@ -1368,24 +1367,25 @@ Please confirm this quote. Thank you!`;
     inactivityTimer = setTimeout(showBox, INACTIVITY_MS);
   }
 
-  // Auto-open after 2s on load
-  box.style.opacity='0'; box.style.transform='translateY(10px)';
+  // Init hidden
+  box.style.opacity = '0';
+  box.style.transform = 'translateY(10px)';
   setTimeout(showBox, 2000);
 
-  // Hide on scroll
-  window.addEventListener('scroll', ()=>{ if(box.style.display==='flex') hideBox(); }, {passive:true});
+  // Hide on real scroll (debounced — iOS tap can cause micro-scroll)
+  window.addEventListener('scroll', ()=>{
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(()=>{
+      if(box.style.display === 'flex') hideBox();
+    }, 50);
+  }, {passive:true});
 
-  // Hide on click/touch outside widget
-  function outsideHandler(e){
-    if(!bubble.contains(e.target) && box.style.display==='flex') hideBox();
-  }
-  document.addEventListener('click', outsideHandler);
-  document.addEventListener('touchend', outsideHandler, {passive:true});
+  // Hide on click outside (desktop)
+  document.addEventListener('click', (e)=>{
+    if(!bubble.contains(e.target) && box.style.display === 'flex') hideBox();
+  });
 
-  // Reappear 5s after last scroll or click (mouse move alone doesn't trigger)
-  // showBox is called by scheduleReappear automatically
-
-  // X button — hide and reactivate after 1 minute
+  // X — hide 1 minute
   close.onclick = (e)=>{
     e.stopPropagation();
     userClosed = true;
@@ -1394,21 +1394,22 @@ Please confirm this quote. Thank you!`;
     setTimeout(()=>{ userClosed = false; scheduleReappear(); }, 60000);
   };
 
-  // Manual toggle via green button
+  // Toggle button
   btn.onclick = (e)=>{
     e.stopPropagation();
-    if(box.style.display==='flex'){ hideBox(); }
-    else { userClosed=false; showBox(); }
+    box.style.display === 'flex' ? hideBox() : (userClosed=false, showBox());
   };
 
+  // Send — open WhatsApp
   function sendMsg(){
     const msg = input.value.trim();
     if(!msg) return;
-    window.location.href = 'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg);
+    const url = 'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg);
+    window.open(url, '_blank');
     input.value = '';
   }
-  send.onclick = (e)=>{ e.stopPropagation(); sendMsg(); };
-  input.onkeydown = (e)=>{ if(e.key==='Enter') sendMsg(); };
+  send.addEventListener('click', (e)=>{ e.stopPropagation(); sendMsg(); });
+  input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') sendMsg(); });
 })();
 </script>
 
