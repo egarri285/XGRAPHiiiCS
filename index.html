@@ -1341,7 +1341,8 @@ Please confirm this quote. Thank you!`;
 
   let inactivityTimer = null;
   let userClosed = false;
-  let scrolling = false, scrollTimer = null;
+  let scrollTimer = null;
+  let inputFocused = false;
 
   function showBox(){
     if(userClosed) return;
@@ -1372,12 +1373,15 @@ Please confirm this quote. Thank you!`;
   box.style.transform = 'translateY(10px)';
   setTimeout(showBox, 2000);
 
-  // Hide on real scroll (debounced — iOS tap can cause micro-scroll)
+  // Hide on scroll — disabled while input is focused (iOS keyboard causes scroll)
+  input.addEventListener('focus', ()=>{ inputFocused = true; });
+  input.addEventListener('blur',  ()=>{ inputFocused = false; });
   window.addEventListener('scroll', ()=>{
+    if(inputFocused) return;
     clearTimeout(scrollTimer);
     scrollTimer = setTimeout(()=>{
       if(box.style.display === 'flex') hideBox();
-    }, 50);
+    }, 150);
   }, {passive:true});
 
   // Hide on click outside (desktop)
