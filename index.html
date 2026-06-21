@@ -1351,6 +1351,8 @@ Please confirm this quote. Thank you!`;
     box.style.transition = 'opacity 3s ease, transform 3s ease';
     requestAnimationFrame(()=>{ box.style.opacity='1'; box.style.transform='translateY(0)'; });
     setTimeout(()=>input.focus(), 300);
+    input.onclick = (e)=>e.stopPropagation();
+    input.addEventListener('touchstart',(e)=>e.stopPropagation(),{passive:true});
   }
 
   function hideBox(){
@@ -1401,7 +1403,7 @@ Please confirm this quote. Thank you!`;
   function sendMsg(){
     const msg = input.value.trim();
     if(!msg) return;
-    window.open('https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg),'_blank');
+    window.location.href = 'https://wa.me/'+WA_NUMBER+'?text='+encodeURIComponent(msg);
     input.value = '';
   }
   send.onclick = (e)=>{ e.stopPropagation(); sendMsg(); };
