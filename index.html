@@ -53,7 +53,7 @@
   --cmy-soft:linear-gradient(120deg,#0698D7,#C10078 55%,#FCE902);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden;max-width:100%}
 body{font-family:'Sora',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 .wrap{max-width:1280px;margin:0 auto;padding:0 32px}
@@ -362,15 +362,15 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
     <nav id="nav">
       <a href="#top" class="logo"><span class="x">X</span><span class="blk">GRAPH</span><span class="iii">iii</span><span class="blk">CS</span></a>
       <ul>
-        <li><a class="navlink" href="#home" data-i18n="nav.home">Home</a></li>
-        <li><a class="navlink" href="#products" data-i18n="nav.products">Products</a></li>
-        <li><a class="navlink" href="#services" data-i18n="nav.services">Services</a></li>
-        <li><a class="navlink" href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
-        <li><a class="navlink" href="#projects" data-i18n="nav.projects">Projects</a></li>
-        <li><a class="navlink" href="#about" data-i18n="nav.about">About us</a></li>
-        <li><a class="navlink" href="#quote" data-i18n="nav.quote">Quote</a></li><li><a class="navlink" href="#contact" data-i18n="nav.contact">Contact us</a></li>
+        <li><a class="navlink" href="#home">Home</a></li>
+        <li><a class="navlink" href="#products">Products</a></li>
+        <li><a class="navlink" href="#services">Services</a></li>
+        <li><a class="navlink" href="#gallery">Gallery</a></li>
+        <li><a class="navlink" href="#projects">Projects</a></li>
+        <li><a class="navlink" href="#about">About us</a></li>
+        <li><a class="navlink" href="#quote">Quote</a></li><li><a class="navlink" href="#contact">Contact us</a></li>
       </ul>
-      <button id="lang-toggle" onclick="toggleLang()" aria-label="Switch language" style="background:none;border:1px solid var(--line);color:var(--ink);font-family:'Space Mono',monospace;font-size:.72rem;padding:5px 12px;border-radius:20px;cursor:pointer;letter-spacing:.08em;margin-right:12px;transition:.2s">ES</button><button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+      <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
     </nav>
   </div>
 </header>
@@ -379,12 +379,12 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="tag" data-i18n="hero.tag">Small &amp; Large Format Print Studio</div>
+        <div class="tag">Small &amp; Large Format Print Studio</div>
         <h1 class="display" id="slogan-h1"><div id="slogan-stage"></div></h1>
-        <p class="lead"><span data-i18n="hero.lead">From museum-grade canvas and custom wallpaper to full-room murals, textiles and UV chrome effects &mdash; we design and produce for hospitality, retail and residential spaces.</span></p>
+        <p class="lead"><span>From museum-grade canvas and custom wallpaper to full-room murals, textiles and UV chrome effects &mdash; we design and produce for hospitality, retail and residential spaces.</span></p>
         <div class="hero-cta">
           <a href="#projects" class="btn btn-fill">View Projects &rarr;</a>
-          <a href="#contact" class="btn btn-ghost" data-i18n="hero.btn2">Start a Project</a>
+          <a href="#contact" class="btn btn-ghost">Start a Project</a>
         </div>
         <div class="stat-row">
           <div class="stat"><div class="n cmy-text">3</div><div class="l">LA / MIA / LV</div></div>
@@ -406,16 +406,16 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 <section id="products">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx" data-i18n="prod.idx">01 &mdash; WHAT WE MAKE</div><h2 data-i18n="prod.h2">Products</h2></div>
-      <p data-i18n="prod.sub">Every product printed in-house with archival inks and finishes built to last in real-world spaces.</p>
+      <div><div class="idx">01 &mdash; WHAT WE MAKE</div><h2>Products</h2></div>
+      <p>Every product printed in-house with archival inks and finishes built to last in real-world spaces.</p>
     </div>
     <div class="prod-grid reveal">
-      <div class="prod"><div class="prod-img" data-prod="canvas"></div><div class="prod-body"><div class="pn">P/01</div><h3 data-i18n="prod.p1.name">Canvas Fine Art</h3><p data-i18n="prod.p1.desc">Gallery-wrapped, museum-grade canvas with archival pigment inks for collectors and interiors.</p><div class="arrow">&rarr;</div></div></div>
-      <div class="prod"><div class="prod-img" data-prod="wallpaper"></div><div class="prod-body"><div class="pn">P/02</div><h3 data-i18n="prod.p2.name">Custom Wallpaper</h3><p data-i18n="prod.p2.desc">Made-to-measure wallpaper printed to your exact wall dimensions and artwork.</p><div class="arrow">&rarr;</div></div></div>
-      <div class="prod"><div class="prod-img" data-prod="mural"></div><div class="prod-body"><div class="pn">P/03</div><h3 data-i18n="prod.p3.name">Murals</h3><p data-i18n="prod.p3.desc">Floor-to-ceiling murals for hotels, restaurants and statement residential walls.</p><div class="arrow">&rarr;</div></div></div>
-      <div class="prod"><div class="prod-img" data-prod="apparel"></div><div class="prod-body"><div class="pn">P/04</div><h3 data-i18n="prod.p4.name">Apparel &amp; Textiles</h3><p>T-Shirts, caps, mugs and more via DTF and dye-sublimation &mdash; vivid, durable, washable.</p><div class="arrow">&rarr;</div></div></div>
-      <div class="prod"><div class="prod-img" data-prod="stickers"></div><div class="prod-body"><div class="pn">P/05</div><h3 data-i18n="prod.p5.name">Laminated Vinyl Stickers</h3><p data-i18n="prod.p5.desc">Die-cut, weather-proof laminated vinyl decals for branding and product packaging.</p><div class="arrow">&rarr;</div></div></div>
-      <div class="prod"><div class="prod-img" data-prod="banner"></div><div class="prod-body"><div class="pn">P/06</div><h3 data-i18n="prod.p6.name">Advertising Banners</h3><p data-i18n="prod.p6.desc">Indoor and outdoor banners printed with eco-solvent inks for stretch substrates.</p><div class="arrow">&rarr;</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="canvas"></div><div class="prod-body"><div class="pn">P/01</div><h3>Canvas Fine Art</h3><p>Gallery-wrapped, museum-grade canvas with archival pigment inks for collectors and interiors.</p><div class="arrow">&rarr;</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="wallpaper"></div><div class="prod-body"><div class="pn">P/02</div><h3>Custom Wallpaper</h3><p>Made-to-measure wallpaper printed to your exact wall dimensions and artwork.</p><div class="arrow">&rarr;</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="mural"></div><div class="prod-body"><div class="pn">P/03</div><h3>Murals</h3><p>Floor-to-ceiling murals for hotels, restaurants and statement residential walls.</p><div class="arrow">&rarr;</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="apparel"></div><div class="prod-body"><div class="pn">P/04</div><h3>Apparel &amp; Textiles</h3><p>T-Shirts, caps, mugs and more via DTF and dye-sublimation &mdash; vivid, durable, washable.</p><div class="arrow">&rarr;</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="stickers"></div><div class="prod-body"><div class="pn">P/05</div><h3>Laminated Vinyl Stickers</h3><p>Die-cut, weather-proof laminated vinyl decals for branding and product packaging.</p><div class="arrow">&rarr;</div></div></div>
+      <div class="prod"><div class="prod-img" data-prod="banner"></div><div class="prod-body"><div class="pn">P/06</div><h3>Advertising Banners</h3><p>Indoor and outdoor banners printed with eco-solvent inks for stretch substrates.</p><div class="arrow">&rarr;</div></div></div>
     </div>
 
   </div>
@@ -424,16 +424,16 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 <section id="services">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx" data-i18n="serv.idx">02 &mdash; HOW WE WORK</div><h2 data-i18n="serv.h2">Services</h2></div>
-      <p data-i18n="serv.sub">A full-stack print partner &mdash; concept to install. We own the design and the production line end to end.</p>
+      <div><div class="idx">02 &mdash; HOW WE WORK</div><h2>Services</h2></div>
+      <p>A full-stack print partner &mdash; concept to install. We own the design and the production line end to end.</p>
     </div>
     <div class="serv-list reveal">
-      <div class="serv"><div class="num">01</div><div><h3 data-i18n="serv.s1.name">Design &amp; Art Direction</h3><p data-i18n="serv.s1.desc">In-house creative for hospitality &amp; residential &mdash; concepts, layouts and print-ready files.</p></div></div>
-      <div class="serv"><div class="num">02</div><div><h3 data-i18n="serv.s2.name">Large Format Production</h3><p data-i18n="serv.s2.desc">Wide-format printing for wallpaper, murals, canvas and signage at any scale.</p></div></div>
-      <div class="serv"><div class="num">03</div><div><h3 data-i18n="serv.s3.name">Eco-Solvent Printing</h3><p data-i18n="serv.s3.desc">Flexible, stretchable substrates printed with durable eco-solvent inks.</p></div></div>
-      <div class="serv"><div class="num">04</div><div><h3 data-i18n="serv.s4.name">UV Printing</h3><p data-i18n="serv.s4.desc">Chrome, metallic and iridescent (tornasol) effects on rigid &amp; specialty materials.</p></div></div>
-      <div class="serv"><div class="num">05</div><div><h3 data-i18n="serv.s5.name">DTF &amp; Sublimation</h3><p data-i18n="serv.s5.desc">Apparel and hard-goods decoration &mdash; caps, garments, mugs and promotional items.</p></div></div>
-      <div class="serv"><div class="num">06</div><div><h3 data-i18n="serv.s6.name">Lamination &amp; Finishing</h3><p data-i18n="serv.s6.desc">Cold/hot lamination, contour cutting and install-ready finishing for longevity.</p></div></div>
+      <div class="serv"><div class="num">01</div><div><h3>Design &amp; Art Direction</h3><p>In-house creative for hospitality &amp; residential &mdash; concepts, layouts and print-ready files.</p></div></div>
+      <div class="serv"><div class="num">02</div><div><h3>Large Format Production</h3><p>Wide-format printing for wallpaper, murals, canvas and signage at any scale.</p></div></div>
+      <div class="serv"><div class="num">03</div><div><h3>Eco-Solvent Printing</h3><p>Flexible, stretchable substrates printed with durable eco-solvent inks.</p></div></div>
+      <div class="serv"><div class="num">04</div><div><h3>UV Printing</h3><p>Chrome, metallic and iridescent (tornasol) effects on rigid &amp; specialty materials.</p></div></div>
+      <div class="serv"><div class="num">05</div><div><h3>DTF &amp; Sublimation</h3><p>Apparel and hard-goods decoration &mdash; caps, garments, mugs and promotional items.</p></div></div>
+      <div class="serv"><div class="num">06</div><div><h3>Lamination &amp; Finishing</h3><p>Cold/hot lamination, contour cutting and install-ready finishing for longevity.</p></div></div>
     </div>
   </div>
 </section>
@@ -441,8 +441,8 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 <section id="gallery">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx" data-i18n="gal.idx">03 &mdash; SELECTED WORK</div><h2 data-i18n="gal.h2">Gallery</h2></div>
-      <p data-i18n="gal.sub">A look at finished installs, prints and the studio floor. (Replace these with your real photos.)</p>
+      <div><div class="idx">03 &mdash; SELECTED WORK</div><h2>Gallery</h2></div>
+      <p>A look at finished installs, prints and the studio floor. (Replace these with your real photos.)</p>
     </div>
     <div class="gal-grid reveal" id="galGrid"></div>
   </div>
@@ -451,7 +451,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 <section id="projects" style="padding-top:0">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx" data-i18n="proj.idx">04 &mdash; FEATURED PROJECTS</div><h2 data-i18n="proj.h2">Projects</h2></div>
+      <div><div class="idx">04 &mdash; FEATURED PROJECTS</div><h2>Projects</h2></div>
       <p>Spaces we designed and produced &mdash; from Las Vegas suites to Florida dining rooms.</p>
     </div>
     <div class="reveal">
@@ -509,12 +509,12 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 <section id="about">
   <div class="wrap">
     <div class="sec-head reveal">
-      <div><div class="idx" data-i18n="about.idx">05 &mdash; THE STUDIO</div><h2 data-i18n="about.h2">About us</h2></div>
+      <div><div class="idx">05 &mdash; THE STUDIO</div><h2>About us</h2></div>
       
     </div>
     <div class="about-grid reveal">
       <div class="about-text">
-        <div class="big" data-i18n="about.big">We turn artwork into <span class="cmy-text">physical space</span> &mdash; printed, finished and installed with obsessive attention to color and craft.</div>
+        <div class="big">We turn artwork into <span class="cmy-text">physical space</span> &mdash; printed, finished and installed with obsessive attention to color and craft.</div>
         <p>XGRAPHiiiCS is a small &amp; large format print studio specializing in canvas fine art, custom wallpaper and murals. We handle both the design and the production for hotels, restaurants and residential projects, plus textiles, stickers, banners and specialty effects.</p>
         <p>From eco-solvent printing for stretch materials to UV inks for chrome and iridescent finishes, our shop runs professional-grade equipment to deliver consistent, durable, gallery-quality results &mdash; at any scale.</p>
       </div>
@@ -528,7 +528,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 <!-- ===== QUOTE CALCULATOR ===== -->
 <section id="quote">
   <div class="wrap">
-    <div class="sec-head"><h2 data-i18n="quote.h2">Get a Quote</h2></div>
+    <div class="sec-head"><h2>Get a Quote</h2></div>
     <p class="qc-sub">Instant pricing. Volume discounts apply automatically as your order grows.</p>
     <div class="qc-grid">
       <div class="qc-panel">
@@ -574,7 +574,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
               <span class="vtick" id="qc-t3">−30%</span>
             </div>
           </div>
-          <button class="qc-cta" onclick="qcSendQuote()" data-i18n="quote.btn">Request this quote ↓</button>
+          <button class="qc-cta" onclick="qcSendQuote()">Request this quote ↓</button>
           <div class="qc-contact">XGRAPHiiiCS · Miami Beach · <b>786-702-7351</b></div>
         </div>
         <p class="qc-disc">Estimated price in USD. Final quote may vary based on material, finishes, artwork and site conditions.</p>
@@ -585,20 +585,20 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 
 <section id="contact">
   <div class="wrap">
-    <div class="sec-head reveal"><div><div class="idx" data-i18n="contact.idx">06 &mdash; LET'S TALK</div><h2 data-i18n="contact.h2">Contact us</h2></div></div>
+    <div class="sec-head reveal"><div><div class="idx">06 &mdash; LET'S TALK</div><h2>Contact us</h2></div></div>
     <div class="contact-grid reveal">
       <div class="contact-info">
-        <h3 data-i18n="contact.h3">Have a wall, a space<br>or an idea? <span class="cmy-text">Let's print it.</span></h3>
+        <h3>Have a wall, a space<br>or an idea? <span class="cmy-text">Let's print it.</span></h3>
         <div class="row"><div class="k">Email</div><div class="v">info@xgraphiiics.com</div></div>
         <div class="row"><div class="k">Studio</div><div class="v">Miami Beach</div></div>
         <div class="row"><div class="k">Hours</div><div class="v">Mon&ndash;Fri &middot; 9am &ndash; 6pm</div></div>
       </div>
       <form action="https://formspree.io/f/xjgdrlvj" method="POST">
-        <input type="text" name="name" placeholder="Name" data-i18n-ph="contact.name" required>
-        <input type="email" name="email" placeholder="Email" data-i18n-ph="contact.email" required>
-        <input type="text" name="project_type" placeholder="Project type (mural, wallpaper, apparel…)" data-i18n-ph="contact.project">
-        <textarea rows="4" name="message" placeholder="Tell us about your project" data-i18n-ph="contact.message"></textarea>
-        <button type="submit" data-i18n="contact.send">Send Inquiry</button>
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="project_type" placeholder="Project type (mural, wallpaper, apparel…)">
+        <textarea rows="4" name="message" placeholder="Tell us about your project"></textarea>
+        <button type="submit">Send Inquiry</button>
       </form>
     </div>
   </div>
@@ -609,7 +609,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
     <div class="foot-top">
       <div>
         <div class="foot-logo"><span class="x">X</span><span class="blk">GRAPH</span><span class="iii">iii</span><span class="blk">CS</span></div>
-        <p style="color:rgba(255,255,255,.5);margin-top:14px;max-width:340px;font-weight:300;font-size:.92rem" data-i18n="footer.desc">Fine art &amp; large format print studio. Design + production for hospitality, retail and residential.</p>
+        <p style="color:rgba(255,255,255,.5);margin-top:14px;max-width:340px;font-weight:300;font-size:.92rem">Fine art &amp; large format print studio. Design + production for hospitality, retail and residential.</p>
       </div>
       <div>
         <div class="k mono" style="font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px;font-weight:700;background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent">Follow the work</div>
@@ -1417,108 +1417,5 @@ Please confirm this quote. Thank you!`;
 })();
 </script>
 
-
-<script>
-/* ===== I18N ===== */
-const I18N = {
-  en: {
-    'nav.home':'Home','nav.products':'Products','nav.services':'Services',
-    'nav.gallery':'Gallery','nav.projects':'Projects','nav.about':'About us',
-    'nav.quote':'Quote','nav.contact':'Contact us',
-    'hero.tag':'Small & Large Format Print Studio',
-    'hero.lead':'From museum-grade canvas and custom wallpaper to full-room murals, textiles and UV chrome effects — we design and produce for hospitality, retail and residential spaces.',
-    'hero.btn1':'View Projects ↗','hero.btn2':'Start a Project',
-    'stat.cities':'Cities · LA / MIA / LV','stat.design':'In-house design + print','stat.substrates':'Substrates & finishes',
-    'prod.idx':'01 — WHAT WE MAKE','prod.h2':'Products',
-    'prod.sub':'Every product printed in-house with archival inks and finishes built to last in real-world spaces.',
-    'prod.p1.name':'Canvas Fine Art','prod.p1.desc':'Gallery-wrapped, museum-grade canvas with archival pigment inks for collectors and interiors.',
-    'prod.p2.name':'Custom Wallpaper','prod.p2.desc':'Made-to-measure wallpaper printed to your exact wall dimensions and artwork.',
-    'prod.p3.name':'Murals','prod.p3.desc':'Floor-to-ceiling murals for hotels, restaurants and statement residential walls.',
-    'prod.p4.name':'Apparel & Textiles','prod.p4.desc':'T-shirts, caps, mugs and more via DTF and dye-sublimation — vivid, durable, washable.',
-    'prod.p5.name':'Laminated Vinyl Stickers','prod.p5.desc':'Die-cut, weather-proof laminated vinyl decals for branding and product packaging.',
-    'prod.p6.name':'Advertising Banners','prod.p6.desc':'Indoor and outdoor banners printed with eco-solvent inks for stretch substrates.',
-    'serv.idx':'02 — HOW WE WORK','serv.h2':'Services',
-    'serv.sub':'A full-stack print partner — concept to install. We own the design and the production line end to end.',
-    'serv.s1.name':'Design & Art Direction','serv.s1.desc':'In-house creative for hospitality & residential — concepts, layouts and print-ready files.',
-    'serv.s2.name':'Large Format Production','serv.s2.desc':'Wide-format printing for wallpaper, murals, canvas and signage at any scale.',
-    'serv.s3.name':'Eco-Solvent Printing','serv.s3.desc':'Flexible, stretchable substrates printed with durable eco-solvent inks.',
-    'serv.s4.name':'UV Printing','serv.s4.desc':'Chrome, metallic and iridescent (tornasol) effects on rigid & specialty materials.',
-    'serv.s5.name':'DTF & Sublimation','serv.s5.desc':'Apparel and hard-goods decoration — caps, garments, mugs and promotional items.',
-    'serv.s6.name':'Lamination & Finishing','serv.s6.desc':'Cold/hot lamination, contour cutting and install-ready finishing for longevity.',
-    'gal.idx':'03 — SELECTED WORK','gal.h2':'Gallery',
-    'gal.sub':'A look at finished installs, prints and the studio floor. (Replace these with your real photos.)',
-    'proj.idx':'04 — FEATURED PROJECTS','proj.h2':'Projects',
-    'about.idx':'05 — THE STUDIO','about.h2':'About us',
-    'about.big':'We turn artwork into <span class="cmy-text">physical space</span> — printed, finished and installed with obsessive attention to color and craft.',
-    'quote.h2':'Get a Quote','quote.sub':'Instant pricing estimate. No commitment required.','quote.btn':'Request this quote ↓',
-    'contact.idx':"06 — LET'S TALK",'contact.h2':'Contact us',
-    'contact.h3':'Have a wall, a space<br>or an idea? <span class="cmy-text">Let\'s print it.</span>',
-    'contact.name':'Name','contact.email':'Email',
-    'contact.project':'Project type (mural, wallpaper, apparel…)',
-    'contact.message':'Tell us about your project','contact.send':'Send Inquiry',
-    'footer.desc':'Fine art & large format print studio. Design + production for hospitality, retail and residential.'
-  },
-  es: {
-    'nav.home':'Inicio','nav.products':'Productos','nav.services':'Servicios',
-    'nav.gallery':'Galería','nav.projects':'Proyectos','nav.about':'Nosotros',
-    'nav.quote':'Cotizar','nav.contact':'Contacto',
-    'hero.tag':'Estudio de Impresión Pequeño y Gran Formato',
-    'hero.lead':'Desde canvas de grado museístico y papel tapiz personalizado hasta murales de pared completa, textiles y efectos UV cromados — diseñamos y producimos para hostelería, comercio y espacios residenciales.',
-    'hero.btn1':'Ver Proyectos ↗','hero.btn2':'Iniciar Proyecto',
-    'stat.cities':'Ciudades · LA / MIA / LV','stat.design':'Diseño + impresión interna','stat.substrates':'Sustratos y acabados',
-    'prod.idx':'01 — LO QUE HACEMOS','prod.h2':'Productos',
-    'prod.sub':'Cada producto impreso internamente con tintas archivísticas y acabados diseñados para durar en espacios reales.',
-    'prod.p1.name':'Canvas Fine Art','prod.p1.desc':'Canvas de grado museístico con tintas de pigmento archivístico para coleccionistas e interiores.',
-    'prod.p2.name':'Papel Tapiz Personalizado','prod.p2.desc':'Papel tapiz a medida impreso con las dimensiones exactas de tu pared y obra de arte.',
-    'prod.p3.name':'Murales','prod.p3.desc':'Murales de piso a techo para hoteles, restaurantes y paredes residenciales de impacto.',
-    'prod.p4.name':'Ropa y Textiles','prod.p4.desc':'Camisetas, gorras, tazas y más mediante DTF y sublimación — vívidos, duraderos, lavables.',
-    'prod.p5.name':'Stickers Vinilo Laminado','prod.p5.desc':'Calcomanías de vinilo laminado troqueladas y resistentes a la intemperie para branding y packaging.',
-    'prod.p6.name':'Banners Publicitarios','prod.p6.desc':'Banners para interiores y exteriores impresos con tintas eco-solvente para sustratos elásticos.',
-    'serv.idx':'02 — CÓMO TRABAJAMOS','serv.h2':'Servicios',
-    'serv.sub':'Un socio de impresión completo — del concepto a la instalación. Manejamos el diseño y la producción de principio a fin.',
-    'serv.s1.name':'Diseño y Dirección de Arte','serv.s1.desc':'Creatividad interna para hostelería y residencial — conceptos, layouts y archivos listos para imprimir.',
-    'serv.s2.name':'Producción Gran Formato','serv.s2.desc':'Impresión de gran formato para papel tapiz, murales, canvas y señalética a cualquier escala.',
-    'serv.s3.name':'Impresión Eco-Solvente','serv.s3.desc':'Sustratos flexibles y elásticos impresos con tintas eco-solvente duraderas.',
-    'serv.s4.name':'Impresión UV','serv.s4.desc':'Efectos cromados, metálicos e iridiscentes (tornasol) en materiales rígidos y especiales.',
-    'serv.s5.name':'DTF y Sublimación','serv.s5.desc':'Decoración de ropa y objetos — gorras, prendas, tazas y artículos promocionales.',
-    'serv.s6.name':'Laminación y Acabados','serv.s6.desc':'Laminación fría/caliente, corte de contorno y acabados listos para instalar.',
-    'gal.idx':'03 — TRABAJO SELECCIONADO','gal.h2':'Galería',
-    'gal.sub':'Un vistazo a instalaciones terminadas, impresiones y el piso del estudio.',
-    'proj.idx':'04 — PROYECTOS DESTACADOS','proj.h2':'Proyectos',
-    'about.idx':'05 — EL ESTUDIO','about.h2':'Nosotros',
-    'about.big':'Convertimos el arte en <span class="cmy-text">espacio físico</span> — impreso, terminado e instalado con atención obsesiva al color y la artesanía.',
-    'quote.h2':'Solicitar Cotización','quote.sub':'Estimado de precio instantáneo. Sin compromiso.','quote.btn':'Solicitar esta cotización ↓',
-    'contact.idx':'06 — HABLEMOS','contact.h2':'Contáctenos',
-    'contact.h3':'¿Tienes una pared, un espacio<br>o una idea? <span class="cmy-text">Lo imprimimos.</span>',
-    'contact.name':'Nombre','contact.email':'Correo electrónico',
-    'contact.project':'Tipo de proyecto (mural, papel tapiz, ropa…)',
-    'contact.message':'Cuéntanos sobre tu proyecto','contact.send':'Enviar Consulta',
-    'footer.desc':'Estudio de impresión artística y gran formato. Diseño + producción para hostelería, comercio y residencial.'
-  }
-};
-
-let currentLang = 'en';
-
-function applyLang(lang) {
-  const t = I18N[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (t[key] !== undefined) el.innerHTML = t[key];
-  });
-  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
-    const key = el.getAttribute('data-i18n-ph');
-    if (t[key] !== undefined) el.placeholder = t[key];
-  });
-  const btn = document.getElementById('lang-toggle');
-  if (btn) btn.textContent = lang === 'en' ? 'ES' : 'EN';
-  currentLang = lang;
-}
-
-function toggleLang() {
-  applyLang(currentLang === 'en' ? 'es' : 'en');
-}
-</script>
-
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
