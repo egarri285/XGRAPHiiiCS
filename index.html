@@ -558,12 +558,6 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
             <span class="comp-value" id="qc-compTotal">$0</span>
             <span class="comp-label">Avg. competitor price</span>
           </div>
-          <div class="tax-row" id="qc-taxRow" onclick="qcToggleTax()">
-            <div class="tt">Apply sales tax (7%)
-              <small>Companies with Tax ID: turn this off</small>
-            </div>
-            <div class="knob-sm"></div>
-          </div>
           <div class="vmeter">
             <div class="vrow"><span>Volume level</span><span id="qc-discLabel">Base price</span></div>
             <div class="vtrack"><div class="vfill" id="qc-vfill"></div></div>
@@ -1098,7 +1092,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     let installTotal=0;
     if(p.install&&qcState.install){ const rate=qcInstallRate(sqft,p.install.steps); installTotal=rate*sqft; html+=`<div class="li"><span>Installation (${qcMoney(rate)}/sq ft)</span><span class="v">${qcMoney(installTotal)}</span></div>`; }
     let taxAmount=0;
-    if(qcState.taxEnabled){ taxAmount=(productSubtotal+barsCost+mountCost+installTotal)*0.07; html+=`<div class="li tax"><span>Sales tax (7%)</span><span class="v">+${qcMoney(taxAmount)}</span></div>`; }
+    taxAmount=(productSubtotal+barsCost+mountCost+installTotal)*0.07; html+=`<div class="li tax"><span>Sales tax (7%)</span><span class="v">+${qcMoney(taxAmount)}</span></div>`;
     const grand=productSubtotal+barsCost+mountCost+installTotal+taxAmount;
     linesEl.innerHTML=html;
 
@@ -1110,6 +1104,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     else if(qcState.prod==='canvas')     compTotal=QC_COMP_RATES.canvas[qcState.canvasType]*qty;
     else if(qcState.prod==='shirt'){ const ti=qcTierIndex(Math.max(0,qcState.qty),p.thresholds); compTotal=QC_COMP_RATES.shirt[qcState.garment][ti]*Math.max(0,qcState.qty); }
     else if(qcState.prod==='yard')       compTotal=QC_COMP_RATES.yard*Math.max(0,qcState.qty);
+    if(qcState.install&&installTotal>0) compTotal+=installTotal;
+    compTotal=compTotal>0?compTotal*(1.07):0;
     const compEl=document.getElementById('qc-compTotal');
     if(compEl) compEl.textContent=compTotal>0?qcMoney0(compTotal):'$0';
 
