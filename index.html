@@ -953,7 +953,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     note:"Standard Vinyl: $9/sq ft, up to 30% volume discount. Type II · Hotel Grade: $13/sq ft (Class A / NFPA fire-rated substrate), capped at 20% discount. Metallic/iridescent UV finishes apply to both grades."
   },
   fence:{
-    name:"Construction Fence Wrap", unit:"linear ft", icon:'<path d="M4 7h22v16H4z" fill="#fff" stroke="#C10078" stroke-width="2"/><path d="M8 12h14M8 16h10" stroke="#C10078" stroke-width="2"/><path d="M2 5h2v20H2zM26 5h2v20h-2z" fill="#0E0E12"/>',
+    name:"Banner / Construction Fence Wrap", unit:"linear ft", icon:'<path d="M4 7h22v16H4z" fill="#fff" stroke="#C10078" stroke-width="2"/><path d="M8 12h14M8 16h10" stroke="#C10078" stroke-width="2"/><path d="M2 5h2v20H2zM26 5h2v20h-2z" fill="#0E0E12"/>',
     mode:"linear", base:3.60, thresholds:[100,500,1500],
     install:{label:"Installation + site survey",
       steps:[{max:100,rate:3.0},{max:500,rate:2.25},{max:null,rate:1.5}]},
@@ -1092,7 +1092,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     let installTotal=0;
     if(p.install&&qcState.install){ const rate=qcInstallRate(sqft,p.install.steps); installTotal=rate*sqft; html+=`<div class="li"><span>Installation (${qcMoney(rate)}/sq ft)</span><span class="v">${qcMoney(installTotal)}</span></div>`; }
     let taxAmount=0;
-    taxAmount=(productSubtotal+barsCost+mountCost+installTotal)*0.07; html+=`<div class="li tax"><span>Sales tax (7%)</span><span class="v">+${qcMoney(taxAmount)}</span></div>`;
+    taxAmount=(productSubtotal+barsCost+mountCost)*0.07; html+=`<div class="li tax"><span>Sales tax (7%)</span><span class="v">+${qcMoney(taxAmount)}</span></div>`;
     const grand=productSubtotal+barsCost+mountCost+installTotal+taxAmount;
     linesEl.innerHTML=html;
 
@@ -1104,8 +1104,8 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     else if(qcState.prod==='canvas')     compTotal=QC_COMP_RATES.canvas[qcState.canvasType]*qty;
     else if(qcState.prod==='shirt'){ const ti=qcTierIndex(Math.max(0,qcState.qty),p.thresholds); compTotal=QC_COMP_RATES.shirt[qcState.garment][ti]*Math.max(0,qcState.qty); }
     else if(qcState.prod==='yard')       compTotal=QC_COMP_RATES.yard*Math.max(0,qcState.qty);
-    if(qcState.install&&installTotal>0) compTotal+=installTotal;
-    compTotal=compTotal>0?compTotal*(1.07):0;
+    const compInstall=qcState.install&&installTotal>0?installTotal:0;
+    compTotal=compTotal>0?compTotal*(1.07)+compInstall:0;
     const compEl=document.getElementById('qc-compTotal');
     if(compEl) compEl.textContent=compTotal>0?qcMoney0(compTotal):'$0';
 
