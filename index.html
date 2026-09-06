@@ -1166,7 +1166,7 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
     ['qc-t0','qc-t1','qc-t2','qc-t3'].forEach((id,i)=>document.getElementById(id).classList.toggle('hit',i<=idx));
   }
 
-  window.qcToggleTax=function(){ qcState.taxEnabled=!qcState.taxEnabled; document.getElementById('qc-taxRow').classList.toggle('on',qcState.taxEnabled); qcRecalc(); };
+  // Tax is always applied (no toggle)
 
   window.qcSendQuote=function(){
     const p=QC_PRODUCTS[qcState.prod];
@@ -1217,7 +1217,6 @@ Please confirm this quote. Thank you!`;
   };
 
   qcRenderDynamic(); qcRecalc();
-  document.getElementById('qc-taxRow').classList.toggle('on', qcState.taxEnabled);
 })();
 
 
