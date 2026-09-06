@@ -350,7 +350,7 @@ footer{background:var(--ink);color:#fff;border-top:1px solid rgba(255,255,255,.1
 /* ===== SLOGAN ANIMATOR ===== */
 #slogan-h1{overflow:hidden;position:relative;min-height:3.2em}
 #slogan-stage{position:absolute;top:0;left:0;width:100%;will-change:transform;font-size:0.78em}
-.slogan-ln{display:block;line-height:1.12;padding-bottom:10px}
+.slogan-ln{display:block;line-height:1.12;padding-bottom:10px;color:var(--ink)}
 .slogan-ln .cmy-text{background:var(--cmy);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:400}
 </style>
 </head>
@@ -1253,7 +1253,7 @@ Please confirm this quote. Thank you!`;
     requestAnimationFrame(() => {
       // Lock h1 to exact measured height — set ONCE, never touched again
       const measured = stage.offsetHeight;
-      if (measured > 0) h1.style.height = (measured + 20) + 'px';
+      h1.style.height = (measured > 0 ? measured + 20 : 220) + 'px';
       stage.innerHTML = '';
       runSlogan();
     });
